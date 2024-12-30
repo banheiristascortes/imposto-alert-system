@@ -1,6 +1,8 @@
+import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
+import { useToast } from "@/hooks/use-toast";
 import {
   BarChart,
   Bar,
@@ -10,6 +12,9 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
+import { DashboardCard } from "./DashboardCard";
+import { TimelineItem } from "./TimelineItem";
+import { FilterBar } from "./FilterBar";
 
 const mockData = [
   { estado: "SP", alteracoes: 12 },
@@ -45,14 +50,35 @@ const recentChanges = [
 
 export const Dashboard = () => {
   const navigate = useNavigate();
+  const { toast } = useToast();
+  const [searchTerm, setSearchTerm] = useState("");
 
   const handleLogout = () => {
     navigate("/");
   };
 
+  const handleSearch = (term: string) => {
+    setSearchTerm(term);
+    console.log("Buscando por:", term);
+  };
+
+  const handleExport = () => {
+    toast({
+      title: "Exportação iniciada",
+      description: "Seus dados estão sendo preparados para download.",
+    });
+    console.log("Exportando dados...");
+  };
+
+  const filteredChanges = recentChanges.filter(
+    (change) =>
+      change.estado.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      change.descricao.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <div className="min-h-screen bg-gray-50">
-      <header className="bg-primary-500 text-white p-4">
+      <header className="bg-primary-500 text-white p-4 shadow-md">
         <div className="container mx-auto flex justify-between items-center">
           <h1 className="text-2xl font-bold">Dashboard Fiscal</h1>
           <Button variant="outline" onClick={handleLogout}>
@@ -61,20 +87,25 @@ export const Dashboard = () => {
         </div>
       </header>
 
-      <main className="container mx-auto py-8">
+      <main className="container mx-auto py-8 px-4">
+        <FilterBar onSearch={handleSearch} onExport={handleExport} />
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-          <Card className="p-6">
-            <h3 className="text-lg font-semibold mb-2">Total de Alterações</h3>
-            <p className="text-3xl font-bold text-primary-500">35</p>
-          </Card>
-          <Card className="p-6">
-            <h3 className="text-lg font-semibold mb-2">Estados Afetados</h3>
-            <p className="text-3xl font-bold text-primary-500">15</p>
-          </Card>
-          <Card className="p-6">
-            <h3 className="text-lg font-semibold mb-2">Alterações Pendentes</h3>
-            <p className="text-3xl font-bold text-primary-500">8</p>
-          </Card>
+          <DashboardCard
+            title="Total de Alterações"
+            value="35"
+            tooltip="Número total de alterações fiscais registradas no sistema"
+          />
+          <DashboardCard
+            title="Estados Afetados"
+            value="15"
+            tooltip="Quantidade de estados com alterações fiscais ativas"
+          />
+          <DashboardCard
+            title="Alterações Pendentes"
+            value="8"
+            tooltip="Alterações que entrarão em vigor nos próximos 30 dias"
+          />
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -83,11 +114,22 @@ export const Dashboard = () => {
             <div className="h-[300px]">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={mockData}>
-                  <CartesianGrid strokeDasharray="3 3" />
+                  <CartesianGrid strokeDasharray="3 3" className="opacity-50" />
                   <XAxis dataKey="estado" />
                   <YAxis />
-                  <Tooltip />
-                  <Bar dataKey="alteracoes" fill="#1E3A8A" />
+                  <Tooltip
+                    contentStyle={{
+                      background: "white",
+                      border: "1px solid #e2e8f0",
+                      borderRadius: "8px",
+                    }}
+                  />
+                  <Bar
+                    dataKey="alteracoes"
+                    fill="#1E3A8A"
+                    radius={[4, 4, 0, 0]}
+                    className="transition-all duration-300 hover:opacity-80"
+                  />
                 </BarChart>
               </ResponsiveContainer>
             </div>
@@ -96,23 +138,8 @@ export const Dashboard = () => {
           <Card className="p-6">
             <h3 className="text-lg font-semibold mb-4">Alterações Recentes</h3>
             <div className="space-y-4">
-              {recentChanges.map((change) => (
-                <div
-                  key={change.id}
-                  className="border-b border-gray-200 pb-4 last:border-0"
-                >
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <h4 className="font-medium text-primary-500">
-                        {change.estado} - {change.tipo}
-                      </h4>
-                      <p className="text-sm text-gray-600">{change.descricao}</p>
-                    </div>
-                    <span className="text-sm text-gray-500">
-                      {new Date(change.data).toLocaleDateString("pt-BR")}
-                    </span>
-                  </div>
-                </div>
+              {filteredChanges.map((change) => (
+                <TimelineItem key={change.id} {...change} />
               ))}
             </div>
           </Card>

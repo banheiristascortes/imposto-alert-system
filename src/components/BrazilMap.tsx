@@ -26,13 +26,9 @@ const stateCoordinates: StateData[] = [
   { state: "PR", position: [-25.4284, -49.2733], changes: 4 },
 ];
 
-const MapContent = () => {
+function MapMarkers() {
   return (
     <>
-      <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
       {stateCoordinates.map(({ state, position, changes }) => (
         <Marker key={state} position={position}>
           <Popup>
@@ -45,14 +41,25 @@ const MapContent = () => {
       ))}
     </>
   );
-};
+}
+
+function MapContent() {
+  return (
+    <>
+      <TileLayer
+        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+      />
+      <MapMarkers />
+    </>
+  );
+}
 
 export const BrazilMap = () => {
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
     setIsClient(true);
-    window.dispatchEvent(new Event("resize"));
   }, []);
 
   if (!isClient) {

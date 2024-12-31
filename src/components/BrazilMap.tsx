@@ -1,7 +1,8 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
+import type { LatLngTuple } from "leaflet";
 
 // Fix for default marker icons
 delete (L.Icon.Default.prototype as any)._getIconUrl;
@@ -11,7 +12,13 @@ L.Icon.Default.mergeOptions({
   shadowUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png",
 });
 
-const stateCoordinates = [
+interface StateData {
+  state: string;
+  position: LatLngTuple;
+  changes: number;
+}
+
+const stateCoordinates: StateData[] = [
   { state: "SP", position: [-23.5505, -46.6333], changes: 12 },
   { state: "RJ", position: [-22.9068, -43.1729], changes: 8 },
   { state: "MG", position: [-19.9167, -43.9345], changes: 6 },
@@ -20,15 +27,21 @@ const stateCoordinates = [
 ];
 
 export const BrazilMap = () => {
+  const [isClient, setIsClient] = useState(false);
+
   useEffect(() => {
-    // Ensure Leaflet updates when component mounts
+    setIsClient(true);
     window.dispatchEvent(new Event("resize"));
   }, []);
+
+  if (!isClient) {
+    return <div className="h-[400px] w-full bg-gray-100 animate-pulse" />;
+  }
 
   return (
     <div className="h-[400px] w-full">
       <MapContainer
-        center={[-15.7801, -47.9292]} // Brasília coordinates
+        center={[-15.7801, -47.9292] as LatLngTuple}
         zoom={4}
         style={{ height: "100%", width: "100%" }}
       >

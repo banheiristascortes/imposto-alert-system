@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, memo } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
@@ -26,34 +26,32 @@ const stateCoordinates: StateData[] = [
   { state: "PR", position: [-25.4284, -49.2733], changes: 4 },
 ];
 
-function MapMarkers() {
-  return (
-    <>
-      {stateCoordinates.map(({ state, position, changes }) => (
-        <Marker key={state} position={position}>
-          <Popup>
-            <div className="p-2">
-              <h3 className="font-semibold">{state}</h3>
-              <p>{changes} alterações fiscais</p>
-            </div>
-          </Popup>
-        </Marker>
-      ))}
-    </>
-  );
-}
+const MapMarkers = memo(() => (
+  <>
+    {stateCoordinates.map(({ state, position, changes }) => (
+      <Marker key={state} position={position}>
+        <Popup>
+          <div className="p-2">
+            <h3 className="font-semibold">{state}</h3>
+            <p>{changes} alterações fiscais</p>
+          </div>
+        </Popup>
+      </Marker>
+    ))}
+  </>
+));
+MapMarkers.displayName = "MapMarkers";
 
-function MapContent() {
-  return (
-    <>
-      <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
-      <MapMarkers />
-    </>
-  );
-}
+const MapContent = memo(() => (
+  <>
+    <TileLayer
+      attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+    />
+    <MapMarkers />
+  </>
+));
+MapContent.displayName = "MapContent";
 
 export const BrazilMap = () => {
   const [isClient, setIsClient] = useState(false);
@@ -69,9 +67,11 @@ export const BrazilMap = () => {
   return (
     <div className="h-[400px] w-full">
       <MapContainer
+        key="map-container"
         center={[-15.7801, -47.9292] as LatLngTuple}
         zoom={4}
         style={{ height: "100%", width: "100%" }}
+        scrollWheelZoom={false}
       >
         <MapContent />
       </MapContainer>

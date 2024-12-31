@@ -3,7 +3,7 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 
-// Corrigir o problema dos ícones do Leaflet
+// Fix Leaflet's default icon issue
 import icon from 'leaflet/dist/images/marker-icon.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 
@@ -24,13 +24,14 @@ interface BrazilMapProps {
   }>;
 }
 
-const stateCoordinates = {
-  'SP': [-48.5483, -22.9099],
-  'RJ': [-43.1729, -22.9068],
-  'MG': [-44.0383, -19.9167],
-  'RS': [-51.2177, -30.0346],
-  'PR': [-51.4166, -25.4284],
-} as const;
+// Define state coordinates as regular arrays instead of readonly tuples
+const stateCoordinates: Record<string, [number, number]> = {
+  'SP': [-22.9099, -48.5483],
+  'RJ': [-22.9068, -43.1729],
+  'MG': [-19.9167, -44.0383],
+  'RS': [-30.0346, -51.2177],
+  'PR': [-25.4284, -51.4166],
+};
 
 export const BrazilMap = ({ stateData }: BrazilMapProps) => {
   return (
@@ -45,7 +46,7 @@ export const BrazilMap = ({ stateData }: BrazilMapProps) => {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         {stateData.map((state, index) => {
-          const coordinates = stateCoordinates[state.estado as keyof typeof stateCoordinates];
+          const coordinates = stateCoordinates[state.estado];
           if (coordinates) {
             return (
               <Marker 

@@ -1,11 +1,6 @@
-import { useState } from "react";
-import { Card } from "@/components/ui/card";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+import { useEffect, useRef } from "react";
+import mapboxgl from "mapbox-gl";
+import "mapbox-gl/dist/mapbox-gl.css";
 
 interface StateData {
   state: string;
@@ -20,132 +15,75 @@ const stateData: StateData[] = [
   { state: "PR", changes: 4 },
 ];
 
-export const BrazilMap = () => {
-  const [activeState, setActiveState] = useState<string | null>(null);
+const stateCoordinates = {
+  SP: [-48.5, -22.5],
+  RJ: [-43.2, -22.9],
+  MG: [-44.0, -19.9],
+  RS: [-51.2, -30.0],
+  PR: [-51.5, -25.4],
+};
 
-  const getStateColor = (state: string) => {
-    const stateInfo = stateData.find((s) => s.state === state);
-    if (!stateInfo) return "#e5e7eb"; // Default color for states without changes
-    
-    // Color intensity based on number of changes
-    const maxChanges = Math.max(...stateData.map(s => s.changes));
-    const intensity = stateInfo.changes / maxChanges;
-    return `rgba(30, 58, 138, ${0.2 + intensity * 0.8})`; // Using the blue color (#1E3A8A) with varying opacity
-  };
+export const BrazilMap = () => {
+  const mapContainer = useRef<HTMLDivElement>(null);
+  const map = useRef<mapboxgl.Map | null>(null);
+
+  useEffect(() => {
+    if (!mapContainer.current) return;
+
+    // Initialize map
+    map.current = new mapboxgl.Map({
+      container: mapContainer.current,
+      style: "mapbox://styles/mapbox/light-v11",
+      center: [-55.0, -15.0], // Center of Brazil
+      zoom: 4,
+    });
+
+    // Add navigation controls
+    map.current.addControl(
+      new mapboxgl.NavigationControl({
+        visualizePitch: true,
+      }),
+      "top-right"
+    );
+
+    // Add markers for each state
+    stateData.forEach((data) => {
+      const coordinates = stateCoordinates[data.state as keyof typeof stateCoordinates];
+      if (!coordinates || !map.current) return;
+
+      // Create marker element
+      const el = document.createElement("div");
+      el.className = "state-marker";
+      el.style.backgroundColor = `rgba(30, 58, 138, ${0.2 + (data.changes / 12) * 0.8})`; // Using primary color with opacity based on changes
+      el.style.width = "20px";
+      el.style.height = "20px";
+      el.style.borderRadius = "50%";
+      el.style.cursor = "pointer";
+
+      // Add popup
+      const popup = new mapboxgl.Popup({ offset: 25 }).setHTML(`
+        <div class="p-2">
+          <h3 class="font-semibold">${data.state}</h3>
+          <p>${data.changes} alterações fiscais</p>
+        </div>
+      `);
+
+      // Add marker to map
+      new mapboxgl.Marker(el)
+        .setLngLat(coordinates)
+        .setPopup(popup)
+        .addTo(map.current);
+    });
+
+    // Cleanup
+    return () => {
+      map.current?.remove();
+    };
+  }, []);
 
   return (
     <div className="w-full h-[400px] relative">
-      <svg
-        viewBox="0 0 960 1000"
-        className="w-full h-full"
-      >
-        <TooltipProvider>
-          {/* São Paulo */}
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <path
-                d="M580 640 l40 20 30 40 -20 30 -40 10 -30 -20 -20 -40 z"
-                fill={getStateColor("SP")}
-                stroke="#fff"
-                strokeWidth="2"
-                onMouseEnter={() => setActiveState("SP")}
-                onMouseLeave={() => setActiveState(null)}
-                className="cursor-pointer hover:opacity-80 transition-opacity"
-              />
-            </TooltipTrigger>
-            <TooltipContent>
-              <div className="p-2">
-                <h3 className="font-semibold">São Paulo</h3>
-                <p>{stateData.find(s => s.state === "SP")?.changes || 0} alterações fiscais</p>
-              </div>
-            </TooltipContent>
-          </Tooltip>
-
-          {/* Rio de Janeiro */}
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <path
-                d="M620 630 l30 10 20 20 -10 20 -30 -10 -20 -20 z"
-                fill={getStateColor("RJ")}
-                stroke="#fff"
-                strokeWidth="2"
-                onMouseEnter={() => setActiveState("RJ")}
-                onMouseLeave={() => setActiveState(null)}
-                className="cursor-pointer hover:opacity-80 transition-opacity"
-              />
-            </TooltipTrigger>
-            <TooltipContent>
-              <div className="p-2">
-                <h3 className="font-semibold">Rio de Janeiro</h3>
-                <p>{stateData.find(s => s.state === "RJ")?.changes || 0} alterações fiscais</p>
-              </div>
-            </TooltipContent>
-          </Tooltip>
-
-          {/* Minas Gerais */}
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <path
-                d="M560 580 l60 20 40 30 -30 40 -50 -10 -40 -30 z"
-                fill={getStateColor("MG")}
-                stroke="#fff"
-                strokeWidth="2"
-                onMouseEnter={() => setActiveState("MG")}
-                onMouseLeave={() => setActiveState(null)}
-                className="cursor-pointer hover:opacity-80 transition-opacity"
-              />
-            </TooltipTrigger>
-            <TooltipContent>
-              <div className="p-2">
-                <h3 className="font-semibold">Minas Gerais</h3>
-                <p>{stateData.find(s => s.state === "MG")?.changes || 0} alterações fiscais</p>
-              </div>
-            </TooltipContent>
-          </Tooltip>
-
-          {/* Rio Grande do Sul */}
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <path
-                d="M520 780 l40 30 30 20 -20 30 -40 -20 -30 -30 z"
-                fill={getStateColor("RS")}
-                stroke="#fff"
-                strokeWidth="2"
-                onMouseEnter={() => setActiveState("RS")}
-                onMouseLeave={() => setActiveState(null)}
-                className="cursor-pointer hover:opacity-80 transition-opacity"
-              />
-            </TooltipTrigger>
-            <TooltipContent>
-              <div className="p-2">
-                <h3 className="font-semibold">Rio Grande do Sul</h3>
-                <p>{stateData.find(s => s.state === "RS")?.changes || 0} alterações fiscais</p>
-              </div>
-            </TooltipContent>
-          </Tooltip>
-
-          {/* Paraná */}
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <path
-                d="M540 700 l40 20 30 30 -20 20 -40 -10 -30 -30 z"
-                fill={getStateColor("PR")}
-                stroke="#fff"
-                strokeWidth="2"
-                onMouseEnter={() => setActiveState("PR")}
-                onMouseLeave={() => setActiveState(null)}
-                className="cursor-pointer hover:opacity-80 transition-opacity"
-              />
-            </TooltipTrigger>
-            <TooltipContent>
-              <div className="p-2">
-                <h3 className="font-semibold">Paraná</h3>
-                <p>{stateData.find(s => s.state === "PR")?.changes || 0} alterações fiscais</p>
-              </div>
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
-      </svg>
+      <div ref={mapContainer} className="absolute inset-0 rounded-lg" />
     </div>
   );
 };

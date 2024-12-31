@@ -26,6 +26,27 @@ const stateCoordinates: StateData[] = [
   { state: "PR", position: [-25.4284, -49.2733], changes: 4 },
 ];
 
+const MapContent = () => {
+  return (
+    <>
+      <TileLayer
+        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+      />
+      {stateCoordinates.map(({ state, position, changes }) => (
+        <Marker key={state} position={position}>
+          <Popup>
+            <div className="p-2">
+              <h3 className="font-semibold">{state}</h3>
+              <p>{changes} alterações fiscais</p>
+            </div>
+          </Popup>
+        </Marker>
+      ))}
+    </>
+  );
+};
+
 export const BrazilMap = () => {
   const [isClient, setIsClient] = useState(false);
 
@@ -45,20 +66,7 @@ export const BrazilMap = () => {
         zoom={4}
         style={{ height: "100%", width: "100%" }}
       >
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        {stateCoordinates.map(({ state, position, changes }) => (
-          <Marker key={state} position={position}>
-            <Popup>
-              <div className="p-2">
-                <h3 className="font-semibold">{state}</h3>
-                <p>{changes} alterações fiscais</p>
-              </div>
-            </Popup>
-          </Marker>
-        ))}
+        <MapContent />
       </MapContainer>
     </div>
   );

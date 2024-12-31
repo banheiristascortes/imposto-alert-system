@@ -1,6 +1,20 @@
-import React, { useEffect, useRef } from 'react';
-import mapboxgl from 'mapbox-gl';
-import 'mapbox-gl/dist/mapbox-gl.css';
+import React from 'react';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
+import L from 'leaflet';
+
+// Corrigir o problema dos ícones do Leaflet
+import icon from 'leaflet/dist/images/marker-icon.png';
+import iconShadow from 'leaflet/dist/images/marker-shadow.png';
+
+let DefaultIcon = L.icon({
+  iconUrl: icon,
+  shadowUrl: iconShadow,
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+});
+
+L.Marker.prototype.options.icon = DefaultIcon;
 
 interface BrazilMapProps {
   stateData: Array<{
@@ -16,55 +30,38 @@ const stateCoordinates = {
   'MG': [-44.0383, -19.9167],
   'RS': [-51.2177, -30.0346],
   'PR': [-51.4166, -25.4284],
-};
+} as const;
 
 export const BrazilMap = ({ stateData }: BrazilMapProps) => {
-  const mapContainer = useRef<HTMLDivElement>(null);
-  const map = useRef<mapboxgl.Map | null>(null);
-
-  useEffect(() => {
-    if (!mapContainer.current) return;
-
-    // Substitua com sua chave pública do Mapbox
-    mapboxgl.accessToken = 'pk.seu_token_aqui';
-    
-    map.current = new mapboxgl.Map({
-      container: mapContainer.current,
-      style: 'mapbox://styles/mapbox/light-v11',
-      center: [-55.0000, -15.0000], // Centro do Brasil
-      zoom: 3
-    });
-
-    map.current.on('load', () => {
-      if (!map.current) return;
-
-      stateData.forEach((state) => {
-        const coordinates = stateCoordinates[state.estado as keyof typeof stateCoordinates];
-        if (coordinates) {
-          const popup = new mapboxgl.Popup({ offset: 25 })
-            .setHTML(`
-              <strong>${state.estado}</strong><br/>
-              Alterações: ${state.alteracoes}
-            `);
-
-          new mapboxgl.Marker({
-            color: "#1E3A8A"
-          })
-            .setLngLat(coordinates)
-            .setPopup(popup)
-            .addTo(map.current!);
-        }
-      });
-    });
-
-    return () => {
-      map.current?.remove();
-    };
-  }, [stateData]);
-
   return (
     <div className="w-full h-[400px] rounded-lg overflow-hidden">
-      <div ref={mapContainer} className="w-full h-full" />
+      <MapContainer
+        center={[-15.0000, -55.0000]}
+        zoom={4}
+        style={{ height: '100%', width: '100%' }}
+      >
+        <TileLayer
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
+        {stateData.map((state, index) => {
+          const coordinates = stateCoordinates[state.estado as keyof typeof stateCoordinates];
+          if (coordinates) {
+            return (
+              <Marker 
+                key={index} 
+                position={coordinates}
+              >
+                <Popup>
+                  <strong>{state.estado}</strong><br/>
+                  Alterações: {state.alteracoes}
+                </Popup>
+              </Marker>
+            );
+          }
+          return null;
+        })}
+      </MapContainer>
     </div>
   );
 };

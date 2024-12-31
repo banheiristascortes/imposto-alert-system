@@ -29,11 +29,11 @@ import {
 } from "@/components/ui/pagination";
 
 const mockData = [
-  { estado: "SP", alteracoes: 12, coordinates: [-48.5483, -22.9099] },
-  { estado: "RJ", alteracoes: 8, coordinates: [-43.1729, -22.9068] },
-  { estado: "MG", alteracoes: 6, coordinates: [-44.0383, -19.9167] },
-  { estado: "RS", alteracoes: 5, coordinates: [-51.2177, -30.0346] },
-  { estado: "PR", alteracoes: 4, coordinates: [-51.4166, -25.4284] },
+  { estado: "SP", alteracoes: 12, coordinates: [-48.5483, -22.9099] as [number, number] },
+  { estado: "RJ", alteracoes: 8, coordinates: [-43.1729, -22.9068] as [number, number] },
+  { estado: "MG", alteracoes: 6, coordinates: [-44.0383, -19.9167] as [number, number] },
+  { estado: "RS", alteracoes: 5, coordinates: [-51.2177, -30.0346] as [number, number] },
+  { estado: "PR", alteracoes: 4, coordinates: [-51.4166, -25.4284] as [number, number] },
 ];
 
 const trendData = [

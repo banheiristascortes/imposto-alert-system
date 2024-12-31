@@ -15,7 +15,8 @@ const stateData: StateData[] = [
   { state: "PR", changes: 4 },
 ];
 
-const stateCoordinates = {
+// Explicitly type the coordinates as [number, number] tuples
+const stateCoordinates: Record<string, [number, number]> = {
   SP: [-48.5, -22.5],
   RJ: [-43.2, -22.9],
   MG: [-44.0, -19.9],
@@ -48,7 +49,7 @@ export const BrazilMap = () => {
 
     // Add markers for each state
     stateData.forEach((data) => {
-      const coordinates = stateCoordinates[data.state as keyof typeof stateCoordinates];
+      const coordinates = stateCoordinates[data.state];
       if (!coordinates || !map.current) return;
 
       // Create marker element

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
@@ -34,6 +34,19 @@ const stateCoordinates: Record<string, [number, number]> = {
 };
 
 export const BrazilMap = ({ stateData }: BrazilMapProps) => {
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+    return () => {
+      setIsMounted(false);
+    };
+  }, []);
+
+  if (!isMounted) {
+    return <div className="w-full h-[400px] bg-gray-100 rounded-lg" />;
+  }
+
   return (
     <div className="w-full h-[400px] rounded-lg overflow-hidden">
       <MapContainer

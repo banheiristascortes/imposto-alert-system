@@ -8,6 +8,9 @@ import { DashboardStats } from "./dashboard/DashboardStats";
 import { StateChangesChart } from "./dashboard/StateChangesChart";
 import { TrendChart } from "./dashboard/TrendChart";
 import { RecentChangesTable } from "./dashboard/RecentChangesTable";
+import { ComparativeAnalysis } from "./analysis/ComparativeAnalysis";
+import { TrendForecast } from "./analysis/TrendForecast";
+import { CommentSection } from "./comments/CommentSection";
 
 const ITEMS_PER_PAGE = 3;
 
@@ -116,6 +119,11 @@ export const Dashboard = () => {
         </div>
 
         <TrendChart />
+        
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+          <ComparativeAnalysis />
+          <TrendForecast />
+        </div>
 
         <RecentChangesTable
           changes={paginatedChanges}
@@ -123,6 +131,10 @@ export const Dashboard = () => {
           totalPages={totalPages}
           onPageChange={setCurrentPage}
         />
+
+        <div className="mt-8">
+          <CommentSection />
+        </div>
       </main>
     </div>
   );

@@ -1,16 +1,17 @@
 import { Button } from "@/components/ui/button";
 import { Download } from "lucide-react";
-import { toPDF } from "react-to-pdf";
+import { usePDF } from "react-to-pdf";
 import { useToast } from "@/hooks/use-toast";
 
 export const ExportButton = () => {
   const { toast } = useToast();
+  const { toPDF, targetRef } = usePDF({
+    filename: "relatorio-alteracoes.pdf",
+  });
 
   const handleExport = async () => {
     try {
-      await toPDF("dashboard-content", {
-        filename: "relatorio-alteracoes.pdf",
-      });
+      await toPDF();
       
       toast({
         title: "Exportação concluída",

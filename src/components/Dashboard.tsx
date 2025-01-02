@@ -3,6 +3,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
+import { NotificationBell } from "./NotificationBell";
 import {
   BarChart,
   Bar,
@@ -152,9 +153,12 @@ export const Dashboard = () => {
       <header className="bg-primary-500 text-white p-4 shadow-md">
         <div className="container mx-auto flex justify-between items-center">
           <h1 className="text-2xl font-bold">Dashboard Fiscal</h1>
-          <Button variant="outline" onClick={handleLogout}>
-            Sair
-          </Button>
+          <div className="flex items-center gap-4">
+            <NotificationBell />
+            <Button variant="outline" onClick={handleLogout}>
+              Sair
+            </Button>
+          </div>
         </div>
       </header>
 

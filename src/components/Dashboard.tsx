@@ -81,8 +81,7 @@ export const Dashboard = () => {
       change.estado.toLowerCase().includes(searchTerm.toLowerCase()) ||
       change.descricao.toLowerCase().includes(searchTerm.toLowerCase());
 
-    const matchesType =
-      filters.type === "all" || change.tipo === filters.type;
+    const matchesType = filters.type === "all" || change.tipo === filters.type;
 
     const changeDate = new Date(change.data);
     const matchesDateRange =
@@ -102,7 +101,7 @@ export const Dashboard = () => {
     <div className="min-h-screen bg-gray-50">
       <DashboardHeader />
 
-      <main className="container mx-auto py-8 px-4">
+      <main className="container mx-auto py-8 px-4" id="dashboard-content">
         <FilterBar onSearch={handleSearch} onExport={handleExport} />
         <AdvancedFilters onFilterChange={handleFilterChange} />
 

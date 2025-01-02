@@ -1,5 +1,10 @@
 import { Card } from "@/components/ui/card";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { Info } from "lucide-react";
 
 interface DashboardCardProps {
@@ -23,7 +28,9 @@ export const DashboardCard = ({ title, value, tooltip }: DashboardCardProps) => 
             </TooltipContent>
           </Tooltip>
         </div>
-        <p className="text-3xl font-bold text-primary-500 animate-fadeIn">{value}</p>
+        <p className="text-3xl font-bold text-primary-500 animate-fadeIn">
+          {value}
+        </p>
       </Card>
     </TooltipProvider>
   );

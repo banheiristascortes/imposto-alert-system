@@ -1,68 +1,53 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import {
-  BarChart,
-  Settings,
-  User,
-  ChevronLeft,
-  ChevronRight,
-  Home,
-  Bell,
-} from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
+import {
+  LayoutDashboard,
+  Bell,
+  User,
+  Settings,
+  HelpCircle,
+  FileText,
+  BarChart,
+} from "lucide-react";
 
 export const AppSidebar = () => {
-  const [collapsed, setCollapsed] = useState(false);
-  const navigate = useNavigate();
+  const location = useLocation();
 
   const menuItems = [
-    { icon: Home, label: "Dashboard", path: "/dashboard" },
-    { icon: BarChart, label: "Análise", path: "/analysis" },
+    { icon: LayoutDashboard, label: "Dashboard", path: "/dashboard" },
     { icon: Bell, label: "Notificações", path: "/notifications" },
-    { icon: Settings, label: "Configurações", path: "/settings" },
     { icon: User, label: "Perfil", path: "/profile" },
+    { icon: BarChart, label: "Relatórios", path: "/reports" },
+    { icon: FileText, label: "Documentação", path: "/docs" },
+    { icon: HelpCircle, label: "Ajuda", path: "/help" },
+    { icon: Settings, label: "Configurações", path: "/settings" },
   ];
 
   return (
-    <div
-      className={cn(
-        "h-screen bg-white border-r transition-all duration-300",
-        collapsed ? "w-16" : "w-64"
-      )}
-    >
-      <div className="flex items-center justify-between p-4 border-b">
-        {!collapsed && <span className="font-semibold">Menu</span>}
-        <Button
-          variant="ghost"
-          size="sm"
-          onClick={() => setCollapsed(!collapsed)}
-          className={cn("ml-auto", collapsed && "mx-auto")}
-        >
-          {collapsed ? (
-            <ChevronRight className="h-4 w-4" />
-          ) : (
-            <ChevronLeft className="h-4 w-4" />
-          )}
-        </Button>
+    <aside className="w-64 bg-[hsl(var(--sidebar-background))] text-[hsl(var(--sidebar-foreground))] border-r border-[hsl(var(--sidebar-border))] min-h-screen">
+      <div className="p-6">
+        <h1 className="text-2xl font-bold mb-6">TaxTracker</h1>
+        <nav>
+          <ul className="space-y-2">
+            {menuItems.map(({ icon: Icon, label, path }) => (
+              <li key={path}>
+                <Link
+                  to={path}
+                  className={cn(
+                    "flex items-center gap-3 px-3 py-2 rounded-lg transition-colors",
+                    "hover:bg-[hsl(var(--sidebar-accent))] hover:text-[hsl(var(--sidebar-accent-foreground))]",
+                    location.pathname === path &&
+                      "bg-[hsl(var(--sidebar-accent))] text-[hsl(var(--sidebar-accent-foreground))]"
+                  )}
+                >
+                  <Icon className="h-5 w-5" />
+                  {label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
       </div>
-
-      <nav className="p-2 space-y-1">
-        {menuItems.map((item) => (
-          <Button
-            key={item.path}
-            variant="ghost"
-            className={cn(
-              "w-full justify-start",
-              collapsed ? "px-2" : "px-4"
-            )}
-            onClick={() => navigate(item.path)}
-          >
-            <item.icon className="h-4 w-4" />
-            {!collapsed && <span className="ml-2">{item.label}</span>}
-          </Button>
-        ))}
-      </nav>
-    </div>
+    </aside>
   );
 };

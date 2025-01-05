@@ -56,7 +56,7 @@ export const Documentation = () => {
               <pre className="bg-muted p-4 rounded-lg">
                 GET /api/changes
                 POST /api/notifications
-                GET /api/states/{state_id}
+                GET /api/states
               </pre>
             </div>
           </Card>

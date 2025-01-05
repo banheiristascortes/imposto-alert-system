@@ -11,6 +11,7 @@ import { FAQ } from "./components/pages/FAQ";
 import { Documentation } from "./components/pages/Documentation";
 import { Settings } from "./components/pages/Settings";
 import { ThemeProvider } from "./contexts/ThemeContext";
+import { AppSidebar } from "./components/AppSidebar";
 
 const queryClient = new QueryClient();
 
@@ -22,16 +23,37 @@ function App() {
           <Toaster />
           <SonnerToaster />
           <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<div className="w-full"><LoginForm /></div>} />
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/notifications" element={<NotificationsPage />} />
-              <Route path="/profile" element={<UserProfile />} />
-              <Route path="/faq" element={<FAQ />} />
-              <Route path="/docs" element={<Documentation />} />
-              <Route path="/settings" element={<Settings />} />
-              <Route path="*" element={<Navigate to="/" replace />} />
-            </Routes>
+            <div className="flex min-h-screen w-full">
+              <Routes>
+                <Route
+                  path="/"
+                  element={
+                    <div className="w-full">
+                      <LoginForm />
+                    </div>
+                  }
+                />
+                <Route
+                  path="/*"
+                  element={
+                    <>
+                      <AppSidebar />
+                      <div className="flex-1">
+                        <Routes>
+                          <Route path="/dashboard" element={<Dashboard />} />
+                          <Route path="/notifications" element={<NotificationsPage />} />
+                          <Route path="/profile" element={<UserProfile />} />
+                          <Route path="/faq" element={<FAQ />} />
+                          <Route path="/docs" element={<Documentation />} />
+                          <Route path="/settings" element={<Settings />} />
+                          <Route path="*" element={<Navigate to="/dashboard" replace />} />
+                        </Routes>
+                      </div>
+                    </>
+                  }
+                />
+              </Routes>
+            </div>
           </BrowserRouter>
         </TooltipProvider>
       </QueryClientProvider>

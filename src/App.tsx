@@ -6,42 +6,37 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { LoginForm } from "./components/LoginForm";
 import { Dashboard } from "./components/Dashboard";
 import { NotificationsPage } from "./components/NotificationsPage";
-import { AppSidebar } from "./components/AppSidebar";
 import { UserProfile } from "./components/profile/UserProfile";
+import { FAQ } from "./components/pages/FAQ";
+import { Documentation } from "./components/pages/Documentation";
+import { Settings } from "./components/pages/Settings";
+import { ThemeProvider } from "./contexts/ThemeContext";
 
 const queryClient = new QueryClient();
 
-export default function App() {
+function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Toaster />
-        <SonnerToaster />
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<div className="w-full"><LoginForm /></div>} />
-            <Route
-              path="/*"
-              element={
-                <div className="flex w-full">
-                  <AppSidebar />
-                  <div className="flex-1">
-                    <Routes>
-                      <Route path="/dashboard" element={<Dashboard />} />
-                      <Route path="/profile" element={<UserProfile />} />
-                      <Route
-                        path="/notifications"
-                        element={<NotificationsPage />}
-                      />
-                      <Route path="*" element={<Navigate to="/dashboard" replace />} />
-                    </Routes>
-                  </div>
-                </div>
-              }
-            />
-          </Routes>
-        </BrowserRouter>
-      </TooltipProvider>
-    </QueryClientProvider>
+    <ThemeProvider>
+      <QueryClientProvider client={queryClient}>
+        <TooltipProvider>
+          <Toaster />
+          <SonnerToaster />
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<div className="w-full"><LoginForm /></div>} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/notifications" element={<NotificationsPage />} />
+              <Route path="/profile" element={<UserProfile />} />
+              <Route path="/faq" element={<FAQ />} />
+              <Route path="/docs" element={<Documentation />} />
+              <Route path="/settings" element={<Settings />} />
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
+          </BrowserRouter>
+        </TooltipProvider>
+      </QueryClientProvider>
+    </ThemeProvider>
   );
 }
+
+export default App;

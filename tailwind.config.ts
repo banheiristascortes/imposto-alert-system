@@ -1,12 +1,12 @@
 import type { Config } from "tailwindcss";
 
-export default {
+const config = {
   darkMode: ["class"],
   content: [
-    "./pages/**/*.{ts,tsx}",
-    "./components/**/*.{ts,tsx}",
-    "./app/**/*.{ts,tsx}",
-    "./src/**/*.{ts,tsx}",
+    './pages/**/*.{ts,tsx}',
+    './components/**/*.{ts,tsx}',
+    './app/**/*.{ts,tsx}',
+    './src/**/*.{ts,tsx}',
   ],
   prefix: "",
   theme: {
@@ -25,17 +25,8 @@ export default {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "#1E3A8A",
-          foreground: "#FFFFFF",
-          100: "#EBF2FF",
-          200: "#D1E2FF",
-          300: "#A3C7FF",
-          400: "#76A9FF",
-          500: "#1E3A8A",
-          600: "#1A327A",
-          700: "#162A6A",
-          800: "#12225A",
-          900: "#0E1A4A"
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
@@ -76,17 +67,14 @@ export default {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
-        fadeIn: {
-          "0%": { opacity: "0" },
-          "100%": { opacity: "1" },
-        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        fadeIn: "fadeIn 0.5s ease-in-out",
       },
     },
   },
   plugins: [require("tailwindcss-animate")],
 } satisfies Config;
+
+export default config;

@@ -15,7 +15,11 @@ export const DashboardHeader = () => {
         <h1 className="text-2xl font-bold">Dashboard Fiscal</h1>
         <div className="flex items-center gap-4">
           <NotificationBell />
-          <Button variant="outline" onClick={handleLogout}>
+          <Button 
+            variant="outline" 
+            onClick={handleLogout}
+            className="text-black hover:text-black bg-white hover:bg-gray-100"
+          >
             Sair
           </Button>
         </div>

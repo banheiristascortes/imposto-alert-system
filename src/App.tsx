@@ -16,29 +16,27 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <div className="flex">
-          <Routes>
-            <Route path="/" element={<LoginForm />} />
-            <Route
-              path="/*"
-              element={
-                <div className="flex w-full">
-                  <AppSidebar />
-                  <div className="flex-1">
-                    <Routes>
-                      <Route path="/dashboard" element={<Dashboard />} />
-                      <Route
-                        path="/notifications"
-                        element={<NotificationsPage />}
-                      />
-                      <Route path="*" element={<Navigate to="/dashboard" replace />} />
-                    </Routes>
-                  </div>
+        <Routes>
+          <Route path="/" element={<div className="w-full"><LoginForm /></div>} />
+          <Route
+            path="/*"
+            element={
+              <div className="flex w-full">
+                <AppSidebar />
+                <div className="flex-1">
+                  <Routes>
+                    <Route path="/dashboard" element={<Dashboard />} />
+                    <Route
+                      path="/notifications"
+                      element={<NotificationsPage />}
+                    />
+                    <Route path="*" element={<Navigate to="/dashboard" replace />} />
+                  </Routes>
                 </div>
-              }
-            />
-          </Routes>
-        </div>
+              </div>
+            }
+          />
+        </Routes>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

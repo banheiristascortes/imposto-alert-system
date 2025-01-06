@@ -37,7 +37,7 @@ export const AppSidebar = () => {
       <Button
         variant="ghost"
         size="icon"
-        className="absolute -right-4 top-6 bg-[hsl(var(--sidebar-background))] text-[hsl(var(--sidebar-foreground))] hover:bg-[hsl(var(--sidebar-border))] z-50 rounded-full shadow-md"
+        className="absolute -right-3 top-4 bg-[hsl(var(--sidebar-background))] text-[hsl(var(--sidebar-foreground))] hover:bg-[hsl(var(--sidebar-border))] z-50 rounded-full shadow-md w-6 h-6"
         onClick={() => setIsCollapsed(!isCollapsed)}
       >
         <Menu className="h-4 w-4" />

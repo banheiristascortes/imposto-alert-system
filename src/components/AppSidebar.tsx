@@ -8,10 +8,14 @@ import {
   HelpCircle,
   FileText,
   BarChart,
+  Menu,
 } from "lucide-react";
+import { useState } from "react";
+import { Button } from "./ui/button";
 
 export const AppSidebar = () => {
   const location = useLocation();
+  const [isCollapsed, setIsCollapsed] = useState(false);
 
   const menuItems = [
     { icon: LayoutDashboard, label: "Dashboard", path: "/dashboard" },
@@ -24,9 +28,30 @@ export const AppSidebar = () => {
   ];
 
   return (
-    <aside className="w-64 bg-[hsl(var(--sidebar-background))] text-[hsl(var(--sidebar-foreground))] border-r border-[hsl(var(--sidebar-border))] min-h-screen">
+    <aside 
+      className={cn(
+        "transition-all duration-300 ease-in-out bg-[hsl(var(--sidebar-background))] text-[hsl(var(--sidebar-foreground))] border-r border-[hsl(var(--sidebar-border))] min-h-screen relative",
+        isCollapsed ? "w-[4.5rem]" : "w-64"
+      )}
+    >
+      <Button
+        variant="ghost"
+        size="icon"
+        className="absolute -right-4 top-6 bg-[hsl(var(--sidebar-background))] text-[hsl(var(--sidebar-foreground))] hover:bg-[hsl(var(--sidebar-border))] z-50 rounded-full shadow-md"
+        onClick={() => setIsCollapsed(!isCollapsed)}
+      >
+        <Menu className="h-4 w-4" />
+      </Button>
+
       <div className="p-6">
-        <h1 className="text-2xl font-bold mb-8 text-[hsl(var(--sidebar-accent))]">TaxTracker</h1>
+        <h1 
+          className={cn(
+            "font-bold mb-8 text-[hsl(var(--sidebar-accent))] transition-all duration-300",
+            isCollapsed ? "text-xl" : "text-2xl"
+          )}
+        >
+          {isCollapsed ? "TT" : "TaxTracker"}
+        </h1>
         <nav>
           <ul className="space-y-2">
             {menuItems.map(({ icon: Icon, label, path }) => (
@@ -40,9 +65,17 @@ export const AppSidebar = () => {
                       ? "bg-[hsl(var(--sidebar-accent))] text-[hsl(var(--sidebar-accent-foreground))] shadow-sm"
                       : "text-[hsl(var(--sidebar-foreground))] hover:translate-x-1"
                   )}
+                  title={isCollapsed ? label : undefined}
                 >
-                  <Icon className="h-5 w-5" />
-                  <span className="font-medium">{label}</span>
+                  <Icon className="h-5 w-5 shrink-0" />
+                  <span 
+                    className={cn(
+                      "font-medium whitespace-nowrap transition-all duration-300",
+                      isCollapsed && "hidden"
+                    )}
+                  >
+                    {label}
+                  </span>
                 </Link>
               </li>
             ))}

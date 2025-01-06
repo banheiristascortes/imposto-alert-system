@@ -12,7 +12,7 @@ export const DashboardHeader = () => {
   return (
     <header className="bg-[hsl(var(--header-background))] text-[hsl(var(--header-foreground))] p-4 shadow-md">
       <div className="container mx-auto flex justify-between items-center">
-        <h1 className="text-2xl font-bold">Dashboard Fiscal</h1>
+        <h1 className="text-2xl font-bold">SAF - Sistema de Acompanhamento Fiscal</h1>
         <div className="flex items-center gap-4">
           <NotificationBell />
           <Button 

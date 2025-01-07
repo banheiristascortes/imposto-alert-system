@@ -1,24 +1,48 @@
 {
   "stateData": [
-    { "state": "SP", "changes": 12, "coordinates": [-22.5, -48.5] },
-    { "state": "RJ", "changes": 8, "coordinates": [-22.9, -43.2] },
-    { "state": "MG", "changes": 6, "coordinates": [-19.9, -44.0] },
-    { "state": "RS", "changes": 5, "coordinates": [-30.0, -51.2] },
-    { "state": "PR", "changes": 4, "coordinates": [-25.4, -51.5] }
+    { "state": "SP", "changes": 12, "coordinates": [-23.5505, -46.6333] },
+    { "state": "RJ", "changes": 8, "coordinates": [-22.9068, -43.1729] },
+    { "state": "MG", "changes": 6, "coordinates": [-19.9167, -43.9345] },
+    { "state": "RS", "changes": 5, "coordinates": [-30.0346, -51.2177] },
+    { "state": "PR", "changes": 4, "coordinates": [-25.4284, -49.2733] },
+    { "state": "BA", "changes": 3, "coordinates": [-12.9714, -38.5014] },
+    { "state": "SC", "changes": 4, "coordinates": [-27.5954, -48.5480] },
+    { "state": "GO", "changes": 2, "coordinates": [-16.6799, -49.2550] },
+    { "state": "PE", "changes": 3, "coordinates": [-8.0476, -34.8770] },
+    { "state": "CE", "changes": 2, "coordinates": [-3.7172, -38.5433] },
+    { "state": "PA", "changes": 1, "coordinates": [-1.4558, -48.4902] },
+    { "state": "MT", "changes": 2, "coordinates": [-15.6014, -56.0979] },
+    { "state": "ES", "changes": 2, "coordinates": [-20.2976, -40.2958] },
+    { "state": "PB", "changes": 1, "coordinates": [-7.1195, -34.8450] },
+    { "state": "RN", "changes": 1, "coordinates": [-5.7945, -35.2120] },
+    { "state": "MS", "changes": 2, "coordinates": [-20.4428, -54.6464] },
+    { "state": "PI", "changes": 1, "coordinates": [-5.0892, -42.8016] },
+    { "state": "MA", "changes": 1, "coordinates": [-2.5297, -44.3028] },
+    { "state": "RO", "changes": 1, "coordinates": [-8.7619, -63.9039] },
+    { "state": "SE", "changes": 1, "coordinates": [-10.9095, -37.0748] },
+    { "state": "TO", "changes": 1, "coordinates": [-10.2128, -48.3603] },
+    { "state": "AL", "changes": 1, "coordinates": [-9.6498, -35.7089] },
+    { "state": "AC", "changes": 1, "coordinates": [-9.9754, -67.8249] },
+    { "state": "AP", "changes": 1, "coordinates": [0.0349, -51.0694] },
+    { "state": "RR", "changes": 1, "coordinates": [2.8235, -60.6758] },
+    { "state": "DF", "changes": 2, "coordinates": [-15.7975, -47.8919] }
   ],
   "comparativeData": [
-    { "mes": "Jan", "SP": 4, "RJ": 3, "MG": 2 },
-    { "mes": "Fev", "SP": 6, "RJ": 4, "MG": 3 },
-    { "mes": "Mar", "SP": 8, "RJ": 6, "MG": 4 },
-    { "mes": "Abr", "SP": 5, "RJ": 4, "MG": 3 },
-    { "mes": "Mai", "SP": 7, "RJ": 5, "MG": 4 }
+    { "mes": "Jan", "SP": 4, "RJ": 3, "MG": 2, "RS": 2, "PR": 1 },
+    { "mes": "Fev", "SP": 6, "RJ": 4, "MG": 3, "RS": 3, "PR": 2 },
+    { "mes": "Mar", "SP": 8, "RJ": 6, "MG": 4, "RS": 4, "PR": 3 },
+    { "mes": "Abr", "SP": 5, "RJ": 4, "MG": 3, "RS": 2, "PR": 2 },
+    { "mes": "Mai", "SP": 7, "RJ": 5, "MG": 4, "RS": 3, "PR": 2 },
+    { "mes": "Jun", "SP": 6, "RJ": 4, "MG": 3, "RS": 2, "PR": 1 }
   ],
   "trendData": [
     { "mes": "Jun", "atual": 5, "previsao": 5 },
     { "mes": "Jul", "atual": 6, "previsao": 6 },
     { "mes": "Ago", "atual": null, "previsao": 7 },
     { "mes": "Set", "atual": null, "previsao": 8 },
-    { "mes": "Out", "atual": null, "previsao": 7 }
+    { "mes": "Out", "atual": null, "previsao": 7 },
+    { "mes": "Nov", "atual": null, "previsao": 6 },
+    { "mes": "Dez", "atual": null, "previsao": 8 }
   ],
   "notifications": [
     {
@@ -36,6 +60,14 @@
       "type": "warning",
       "createdAt": "2024-03-19T15:30:00.000Z",
       "read": false
+    },
+    {
+      "id": "3",
+      "title": "Nova Legislação",
+      "message": "Publicada nova legislação sobre ISS no Rio de Janeiro",
+      "type": "info",
+      "createdAt": "2024-03-18T09:15:00.000Z",
+      "read": true
     }
   ],
   "taxChanges": [
@@ -44,35 +76,48 @@
       "estado": "São Paulo",
       "tipo": "ICMS",
       "descricao": "Alteração na alíquota de ICMS para serviços de dados",
-      "data": "2024-03-15"
+      "data": "2024-03-15",
+      "status": "pending"
     },
     {
       "id": 2,
       "estado": "Rio de Janeiro",
       "tipo": "ICMS",
       "descricao": "Novo convênio para tributação de serviços OTT",
-      "data": "2024-03-10"
+      "data": "2024-03-10",
+      "status": "approved"
     },
     {
       "id": 3,
       "estado": "Minas Gerais",
       "tipo": "ICMS",
       "descricao": "Mudança no cálculo da base de ICMS para planos corporativos",
-      "data": "2024-03-05"
+      "data": "2024-03-05",
+      "status": "pending"
     },
     {
       "id": 4,
       "estado": "Rio Grande do Sul",
       "tipo": "ISS",
       "descricao": "Atualização na tributação de serviços digitais",
-      "data": "2024-03-01"
+      "data": "2024-03-01",
+      "status": "approved"
     },
     {
       "id": 5,
       "estado": "Paraná",
       "tipo": "PIS/COFINS",
       "descricao": "Novas regras para créditos tributários",
-      "data": "2024-02-28"
+      "data": "2024-02-28",
+      "status": "approved"
+    },
+    {
+      "id": 6,
+      "estado": "Bahia",
+      "tipo": "ICMS",
+      "descricao": "Atualização de alíquotas para serviços de telecomunicações",
+      "data": "2024-02-25",
+      "status": "pending"
     }
   ]
 }

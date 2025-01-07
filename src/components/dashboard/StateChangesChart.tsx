@@ -7,19 +7,18 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
-  ReferenceArea,
 } from "recharts";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ZoomIn, ZoomOut } from "lucide-react";
+import { api } from "@/services/api";
 
-const mockData = [
-  { estado: "SP", alteracoes: 12, impacto: "Alto", detalhes: "Principais mudanças em ICMS" },
-  { estado: "RJ", alteracoes: 8, impacto: "Médio", detalhes: "Alterações em ISS" },
-  { estado: "MG", alteracoes: 6, impacto: "Médio", detalhes: "Novos convênios" },
-  { estado: "RS", alteracoes: 5, impacto: "Baixo", detalhes: "Atualizações menores" },
-  { estado: "PR", alteracoes: 4, impacto: "Baixo", detalhes: "Ajustes técnicos" },
-];
+interface StateChange {
+  estado: string;
+  alteracoes: number;
+  impacto: string;
+  detalhes: string;
+}
 
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
@@ -40,20 +39,33 @@ const CustomTooltip = ({ active, payload, label }: any) => {
 };
 
 export const StateChangesChart = () => {
+  const [data, setData] = useState<StateChange[]>([]);
   const [zoomDomain, setZoomDomain] = useState<{ start: number; end: number }>({
     start: 0,
-    end: mockData.length - 1,
+    end: 4,
   });
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const stateChanges = await api.getStateChangesData();
+      setData(stateChanges);
+      setZoomDomain({ start: 0, end: stateChanges.length - 1 });
+    };
+
+    fetchData();
+  }, []);
+
   const handleZoomIn = () => {
-    const newStart = Math.min(zoomDomain.start + 1, mockData.length - 2);
+    const newStart = Math.min(zoomDomain.start + 1, data.length - 2);
     const newEnd = Math.max(newStart + 1, zoomDomain.end - 1);
     setZoomDomain({ start: newStart, end: newEnd });
   };
 
   const handleZoomOut = () => {
-    setZoomDomain({ start: 0, end: mockData.length - 1 });
+    setZoomDomain({ start: 0, end: data.length - 1 });
   };
+
+  if (!data.length) return null;
 
   return (
     <Card className="p-6">
@@ -71,13 +83,13 @@ export const StateChangesChart = () => {
       <div className="h-[300px]">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart
-            data={mockData}
+            data={data}
             margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
           >
             <CartesianGrid strokeDasharray="3 3" className="opacity-50" />
             <XAxis
               dataKey="estado"
-              domain={[mockData[zoomDomain.start].estado, mockData[zoomDomain.end].estado]}
+              domain={[data[zoomDomain.start].estado, data[zoomDomain.end].estado]}
             />
             <YAxis />
             <Tooltip content={<CustomTooltip />} />

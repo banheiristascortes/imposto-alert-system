@@ -52,5 +52,20 @@ export const api = {
   async getComparativeData() {
     await delay(500);
     return mockData.comparativeData;
+  },
+
+  async getDashboardStats() {
+    await delay(500);
+    return mockData.dashboardStats;
+  },
+
+  async getStateChangesData() {
+    await delay(500);
+    return mockData.stateChangesData;
+  },
+
+  async getTrendChartData() {
+    await delay(500);
+    return mockData.trendChartData;
   }
 };

@@ -9,16 +9,30 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
+import { useEffect, useState } from "react";
+import { api } from "@/services/api";
 
-const trendData = [
-  { mes: "Jan", icms: 4, iss: 2, outros: 1 },
-  { mes: "Fev", icms: 6, iss: 3, outros: 2 },
-  { mes: "Mar", icms: 8, iss: 4, outros: 3 },
-  { mes: "Abr", icms: 5, iss: 2, outros: 2 },
-  { mes: "Mai", icms: 7, iss: 3, outros: 1 },
-];
+interface TrendData {
+  mes: string;
+  icms: number;
+  iss: number;
+  outros: number;
+}
 
 export const TrendChart = () => {
+  const [data, setData] = useState<TrendData[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const trendData = await api.getTrendChartData();
+      setData(trendData);
+    };
+
+    fetchData();
+  }, []);
+
+  if (!data.length) return null;
+
   return (
     <Card className="p-6 mb-8">
       <h3 className="text-lg font-semibold mb-4">
@@ -26,7 +40,7 @@ export const TrendChart = () => {
       </h3>
       <div className="h-[300px]">
         <ResponsiveContainer width="100%" height="100%">
-          <LineChart data={trendData}>
+          <LineChart data={data}>
             <CartesianGrid strokeDasharray="3 3" className="opacity-50" />
             <XAxis dataKey="mes" />
             <YAxis />

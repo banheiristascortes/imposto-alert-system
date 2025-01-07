@@ -119,5 +119,25 @@
       "data": "2024-02-25",
       "status": "pending"
     }
+  ],
+  "dashboardStats": {
+    "totalChanges": 35,
+    "affectedStates": 15,
+    "pendingChanges": 8,
+    "financialImpact": "1.2M"
+  },
+  "stateChangesData": [
+    { "estado": "SP", "alteracoes": 12, "impacto": "Alto", "detalhes": "Principais mudanças em ICMS" },
+    { "estado": "RJ", "alteracoes": 8, "impacto": "Médio", "detalhes": "Alterações em ISS" },
+    { "estado": "MG", "alteracoes": 6, "impacto": "Médio", "detalhes": "Novos convênios" },
+    { "estado": "RS", "alteracoes": 5, "impacto": "Baixo", "detalhes": "Atualizações menores" },
+    { "estado": "PR", "alteracoes": 4, "impacto": "Baixo", "detalhes": "Ajustes técnicos" }
+  ],
+  "trendChartData": [
+    { "mes": "Jan", "icms": 4, "iss": 2, "outros": 1 },
+    { "mes": "Fev", "icms": 6, "iss": 3, "outros": 2 },
+    { "mes": "Mar", "icms": 8, "iss": 4, "outros": 3 },
+    { "mes": "Abr", "icms": 5, "iss": 2, "outros": 2 },
+    { "mes": "Mai", "icms": 7, "iss": 3, "outros": 1 }
   ]
 }

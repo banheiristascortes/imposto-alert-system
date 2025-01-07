@@ -24,7 +24,7 @@ export const BrazilMap = () => {
 
       // Add markers for each state
       stateData.forEach((data) => {
-        const coordinates = stateData.find(s => s.state === data.state);
+        const coordinates = data.coordinates; // Access coordinates directly from state data
         if (!coordinates || !map.current) return;
 
         // Create marker with circle

@@ -12,17 +12,21 @@ import {
 import { Button } from "@/components/ui/button";
 import { Share2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-
-const mockData = [
-  { mes: "Jan", SP: 4, RJ: 3, MG: 2 },
-  { mes: "Fev", SP: 6, RJ: 4, MG: 3 },
-  { mes: "Mar", SP: 8, RJ: 6, MG: 4 },
-  { mes: "Abr", SP: 5, RJ: 4, MG: 3 },
-  { mes: "Mai", SP: 7, RJ: 5, MG: 4 },
-];
+import { useEffect, useState } from "react";
+import { api } from "@/services/api";
 
 export const ComparativeAnalysis = () => {
   const { toast } = useToast();
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const comparativeData = await api.getComparativeData();
+      setData(comparativeData);
+    };
+
+    fetchData();
+  }, []);
 
   const handleShare = () => {
     toast({
@@ -42,7 +46,7 @@ export const ComparativeAnalysis = () => {
       </div>
       <div className="h-[400px]">
         <ResponsiveContainer width="100%" height="100%">
-          <LineChart data={mockData}>
+          <LineChart data={data}>
             <CartesianGrid strokeDasharray="3 3" className="opacity-50" />
             <XAxis dataKey="mes" />
             <YAxis />

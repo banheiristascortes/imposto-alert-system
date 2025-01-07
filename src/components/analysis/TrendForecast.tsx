@@ -8,22 +8,27 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
-
-const mockData = [
-  { mes: "Jun", atual: 5, previsao: 5 },
-  { mes: "Jul", atual: 6, previsao: 6 },
-  { mes: "Ago", atual: null, previsao: 7 },
-  { mes: "Set", atual: null, previsao: 8 },
-  { mes: "Out", atual: null, previsao: 7 },
-];
+import { useEffect, useState } from "react";
+import { api } from "@/services/api";
 
 export const TrendForecast = () => {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const trendData = await api.getTrendData();
+      setData(trendData);
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <Card className="p-6">
       <h3 className="text-lg font-semibold mb-6">Previsão de Tendências</h3>
       <div className="h-[300px]">
         <ResponsiveContainer width="100%" height="100%">
-          <AreaChart data={mockData}>
+          <AreaChart data={data}>
             <CartesianGrid strokeDasharray="3 3" className="opacity-50" />
             <XAxis dataKey="mes" />
             <YAxis />

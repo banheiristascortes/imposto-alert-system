@@ -1,0 +1,78 @@
+{
+  "stateData": [
+    { "state": "SP", "changes": 12, "coordinates": [-22.5, -48.5] },
+    { "state": "RJ", "changes": 8, "coordinates": [-22.9, -43.2] },
+    { "state": "MG", "changes": 6, "coordinates": [-19.9, -44.0] },
+    { "state": "RS", "changes": 5, "coordinates": [-30.0, -51.2] },
+    { "state": "PR", "changes": 4, "coordinates": [-25.4, -51.5] }
+  ],
+  "comparativeData": [
+    { "mes": "Jan", "SP": 4, "RJ": 3, "MG": 2 },
+    { "mes": "Fev", "SP": 6, "RJ": 4, "MG": 3 },
+    { "mes": "Mar", "SP": 8, "RJ": 6, "MG": 4 },
+    { "mes": "Abr", "SP": 5, "RJ": 4, "MG": 3 },
+    { "mes": "Mai", "SP": 7, "RJ": 5, "MG": 4 }
+  ],
+  "trendData": [
+    { "mes": "Jun", "atual": 5, "previsao": 5 },
+    { "mes": "Jul", "atual": 6, "previsao": 6 },
+    { "mes": "Ago", "atual": null, "previsao": 7 },
+    { "mes": "Set", "atual": null, "previsao": 8 },
+    { "mes": "Out", "atual": null, "previsao": 7 }
+  ],
+  "notifications": [
+    {
+      "id": "1",
+      "title": "Atualização ICMS",
+      "message": "Nova alteração na legislação do ICMS em São Paulo",
+      "type": "info",
+      "createdAt": "2024-03-20T10:00:00.000Z",
+      "read": false
+    },
+    {
+      "id": "2",
+      "title": "Alerta Fiscal",
+      "message": "Prazo de adequação às novas regras se encerra em 30 dias",
+      "type": "warning",
+      "createdAt": "2024-03-19T15:30:00.000Z",
+      "read": false
+    }
+  ],
+  "taxChanges": [
+    {
+      "id": 1,
+      "estado": "São Paulo",
+      "tipo": "ICMS",
+      "descricao": "Alteração na alíquota de ICMS para serviços de dados",
+      "data": "2024-03-15"
+    },
+    {
+      "id": 2,
+      "estado": "Rio de Janeiro",
+      "tipo": "ICMS",
+      "descricao": "Novo convênio para tributação de serviços OTT",
+      "data": "2024-03-10"
+    },
+    {
+      "id": 3,
+      "estado": "Minas Gerais",
+      "tipo": "ICMS",
+      "descricao": "Mudança no cálculo da base de ICMS para planos corporativos",
+      "data": "2024-03-05"
+    },
+    {
+      "id": 4,
+      "estado": "Rio Grande do Sul",
+      "tipo": "ISS",
+      "descricao": "Atualização na tributação de serviços digitais",
+      "data": "2024-03-01"
+    },
+    {
+      "id": 5,
+      "estado": "Paraná",
+      "tipo": "PIS/COFINS",
+      "descricao": "Novas regras para créditos tributários",
+      "data": "2024-02-28"
+    }
+  ]
+}

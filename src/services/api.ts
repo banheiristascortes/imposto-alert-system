@@ -1,16 +1,12 @@
-import { mockNotifications } from './api/mockData/notifications';
-import { mockTaxChanges } from './api/mockData/taxChanges';
-import { mockStateData } from './api/mockData/stateData';
-import { mockTrendData } from './api/mockData/trendData';
-import { mockComparativeData } from './api/mockData/comparativeData';
-import { API_BASE_URL } from "@/constants/app";
+import mockData from './api/mockData/mock.json';
 
 // Simulate API delay
 const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
 export const api = {
   get: async (endpoint: string) => {
-    const response = await fetch(`${API_BASE_URL}${endpoint}`);
+    await delay(500);
+    const response = await fetch(`${endpoint}`);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -18,7 +14,8 @@ export const api = {
   },
 
   post: async (endpoint: string, data: any) => {
-    const response = await fetch(`${API_BASE_URL}${endpoint}`, {
+    await delay(500);
+    const response = await fetch(endpoint, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -34,26 +31,26 @@ export const api = {
   // Mock data methods
   async getNotifications() {
     await delay(500);
-    return mockNotifications;
+    return mockData.notifications;
   },
 
   async getTaxChanges() {
     await delay(500);
-    return mockTaxChanges;
+    return mockData.taxChanges;
   },
 
   async getStateData() {
     await delay(500);
-    return mockStateData;
+    return mockData.stateData;
   },
 
   async getTrendData() {
     await delay(500);
-    return mockTrendData;
+    return mockData.trendData;
   },
 
   async getComparativeData() {
     await delay(500);
-    return mockComparativeData;
+    return mockData.comparativeData;
   }
 };

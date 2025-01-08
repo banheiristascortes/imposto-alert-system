@@ -49,5 +49,19 @@
     { "mes": "Mar", "icms": 8, "iss": 4, "outros": 3 },
     { "mes": "Abr", "icms": 5, "iss": 2, "outros": 2 },
     { "mes": "Mai", "icms": 7, "iss": 3, "outros": 1 }
+  ],
+  "trendData": [
+    { "mes": "Jan", "atual": 45, "previsao": 48 },
+    { "mes": "Fev", "atual": 52, "previsao": 55 },
+    { "mes": "Mar", "atual": 48, "previsao": 51 },
+    { "mes": "Abr", "atual": 51, "previsao": 54 },
+    { "mes": "Mai", "atual": 55, "previsao": 58 }
+  ],
+  "comparativeData": [
+    { "mes": "Jan", "SP": 45, "RJ": 42, "MG": 38 },
+    { "mes": "Fev", "SP": 48, "RJ": 45, "MG": 41 },
+    { "mes": "Mar", "SP": 52, "RJ": 48, "MG": 44 },
+    { "mes": "Abr", "SP": 49, "RJ": 46, "MG": 42 },
+    { "mes": "Mai", "SP": 53, "RJ": 49, "MG": 45 }
   ]
 }

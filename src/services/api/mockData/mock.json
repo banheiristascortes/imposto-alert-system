@@ -6,7 +6,10 @@
       "tipo": "ICMS",
       "descricao": "Alteração na alíquota de ICMS para serviços de dados",
       "data": "2024-03-15",
-      "status": "pending"
+      "status": "pending",
+      "alteracoes": 15,
+      "impacto": "Alto",
+      "detalhes": "Mudança significativa na tributação de serviços de telecomunicações"
     },
     {
       "id": 2,
@@ -14,7 +17,10 @@
       "tipo": "ICMS",
       "descricao": "Novo convênio para tributação de serviços OTT",
       "data": "2024-03-10",
-      "status": "approved"
+      "status": "approved",
+      "alteracoes": 8,
+      "impacto": "Médio",
+      "detalhes": "Atualização das regras para serviços de streaming"
     },
     {
       "id": 3,
@@ -22,7 +28,10 @@
       "tipo": "ICMS",
       "descricao": "Mudança no cálculo da base de ICMS para planos corporativos",
       "data": "2024-03-05",
-      "status": "pending"
+      "status": "pending",
+      "alteracoes": 12,
+      "impacto": "Alto",
+      "detalhes": "Revisão da base de cálculo para contratos empresariais"
     }
   ],
   "mapStateChanges": [

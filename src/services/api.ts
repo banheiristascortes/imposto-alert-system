@@ -36,42 +36,42 @@ export const api = {
 
   async getTaxChanges() {
     await delay(500);
-    return mockData.recentChanges.data;
+    return mockData.taxChanges;
   },
 
   async getStateData() {
     await delay(500);
-    return mockData.stateData.data;
+    return mockData.stateData;
   },
 
   async getTrendData() {
     await delay(500);
-    return mockData.trendData.data;
+    return mockData.trendData;
   },
 
   async getComparativeData() {
     await delay(500);
-    return mockData.comparativeData.data;
+    return mockData.comparativeData;
   },
 
   async getDashboardStats() {
     await delay(500);
-    return mockData.dashboardStats.data;
+    return mockData.dashboardStats;
   },
 
   async getStateChangesData() {
     await delay(500);
-    return mockData.stateChangesData.data;
+    return mockData.stateChangesData;
   },
 
   async getTrendChartData() {
     await delay(500);
-    return mockData.trendChartData.data;
+    return mockData.trendChartData;
   },
 
   async getComments(changeId: number) {
     await delay(500);
-    const change = mockData.recentChanges.data.find(c => c.id === changeId);
+    const change = mockData.taxChanges.find(c => c.id === changeId);
     return change?.comentarios || [];
   }
 };

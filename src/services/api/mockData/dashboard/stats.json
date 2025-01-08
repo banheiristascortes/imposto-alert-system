@@ -1,9 +1,0 @@
-{
-  "// Dados para os cards de estatísticas do Dashboard": "",
-  "dashboardStats": {
-    "totalChanges": 35,
-    "affectedStates": 15,
-    "pendingChanges": 8,
-    "financialImpact": "1.2M"
-  }
-}

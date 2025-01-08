@@ -1,0 +1,11 @@
+{
+  "// Dados para 'Análise Comparativa' - Gráfico comparando alterações entre estados": "",
+  "comparativeData": [
+    { "mes": "Jan", "SP": 4, "RJ": 3, "MG": 2, "RS": 2, "PR": 1 },
+    { "mes": "Fev", "SP": 6, "RJ": 4, "MG": 3, "RS": 3, "PR": 2 },
+    { "mes": "Mar", "SP": 8, "RJ": 6, "MG": 4, "RS": 4, "PR": 3 },
+    { "mes": "Abr", "SP": 5, "RJ": 4, "MG": 3, "RS": 2, "PR": 2 },
+    { "mes": "Mai", "SP": 7, "RJ": 5, "MG": 4, "RS": 3, "PR": 2 },
+    { "mes": "Jun", "SP": 6, "RJ": 4, "MG": 3, "RS": 2, "PR": 1 }
+  ]
+}

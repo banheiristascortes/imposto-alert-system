@@ -36,7 +36,7 @@ export const api = {
 
   async getTaxChanges() {
     await delay(500);
-    return mockData.taxChanges;
+    return mockData.recentChanges;
   },
 
   async getStateData() {
@@ -71,7 +71,7 @@ export const api = {
 
   async getComments(changeId: number) {
     await delay(500);
-    const change = mockData.taxChanges.find(c => c.id === changeId);
+    const change = mockData.recentChanges.find(c => c.id === changeId);
     return change?.comentarios || [];
   }
 };

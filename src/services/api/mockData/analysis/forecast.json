@@ -1,0 +1,12 @@
+{
+  "// Dados para 'Previsão de Tendências' - Gráfico de previsão de alterações futuras": "",
+  "trendData": [
+    { "mes": "Jun", "atual": 5, "previsao": 5 },
+    { "mes": "Jul", "atual": 6, "previsao": 6 },
+    { "mes": "Ago", "atual": null, "previsao": 7 },
+    { "mes": "Set", "atual": null, "previsao": 8 },
+    { "mes": "Out", "atual": null, "previsao": 7 },
+    { "mes": "Nov", "atual": null, "previsao": 6 },
+    { "mes": "Dez", "atual": null, "previsao": 8 }
+  ]
+}

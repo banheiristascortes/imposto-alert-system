@@ -1,0 +1,10 @@
+{
+  "// Dados para o gráfico 'Tendência de Alterações por Tipo' - Gráfico de linha mostrando tendências ao longo do tempo": "",
+  "trendChartData": [
+    { "mes": "Jan", "icms": 4, "iss": 2, "outros": 1 },
+    { "mes": "Fev", "icms": 6, "iss": 3, "outros": 2 },
+    { "mes": "Mar", "icms": 8, "iss": 4, "outros": 3 },
+    { "mes": "Abr", "icms": 5, "iss": 2, "outros": 2 },
+    { "mes": "Mai", "icms": 7, "iss": 3, "outros": 1 }
+  ]
+}

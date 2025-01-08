@@ -1,0 +1,29 @@
+{
+  "// Dados para a tabela 'Alterações Recentes'": "",
+  "recentChanges": [
+    {
+      "id": 1,
+      "estado": "São Paulo",
+      "tipo": "ICMS",
+      "descricao": "Alteração na alíquota de ICMS para serviços de dados",
+      "data": "2024-03-15",
+      "status": "pending"
+    },
+    {
+      "id": 2,
+      "estado": "Rio de Janeiro",
+      "tipo": "ICMS",
+      "descricao": "Novo convênio para tributação de serviços OTT",
+      "data": "2024-03-10",
+      "status": "approved"
+    },
+    {
+      "id": 3,
+      "estado": "Minas Gerais",
+      "tipo": "ICMS",
+      "descricao": "Mudança no cálculo da base de ICMS para planos corporativos",
+      "data": "2024-03-05",
+      "status": "pending"
+    }
+  ]
+}

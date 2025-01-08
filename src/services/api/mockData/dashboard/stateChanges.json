@@ -1,0 +1,35 @@
+{
+  "// Dados para o gráfico 'Alterações por Estado' - Gráfico de barras mostrando alterações fiscais por estado": "",
+  "stateChangesData": [
+    { 
+      "estado": "SP", 
+      "alteracoes": 12, 
+      "impacto": "Alto", 
+      "detalhes": "Principais mudanças em ICMS" 
+    },
+    { 
+      "estado": "RJ", 
+      "alteracoes": 8, 
+      "impacto": "Médio", 
+      "detalhes": "Alterações em ISS" 
+    },
+    { 
+      "estado": "MG", 
+      "alteracoes": 6, 
+      "impacto": "Médio", 
+      "detalhes": "Novos convênios" 
+    },
+    { 
+      "estado": "RS", 
+      "alteracoes": 5, 
+      "impacto": "Baixo", 
+      "detalhes": "Atualizações menores" 
+    },
+    { 
+      "estado": "PR", 
+      "alteracoes": 4, 
+      "impacto": "Baixo", 
+      "detalhes": "Ajustes técnicos" 
+    }
+  ]
+}

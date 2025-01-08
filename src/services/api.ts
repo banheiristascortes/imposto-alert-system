@@ -1,7 +1,4 @@
 import mockData from './api/mockData/mock.json';
-import recentChanges from './api/mockData/recentChanges.json';
-import stateData from './api/mockData/stateData.json';
-import stateChangesData from './api/mockData/stateChangesData.json';
 
 // Simulate API delay
 const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
@@ -32,14 +29,19 @@ export const api = {
   },
 
   // Mock data methods
+  async getNotifications() {
+    await delay(500);
+    return mockData.notifications;
+  },
+
   async getTaxChanges() {
     await delay(500);
-    return recentChanges.data;
+    return mockData.taxChanges;
   },
 
   async getStateData() {
     await delay(500);
-    return stateData.data;
+    return mockData.stateData;
   },
 
   async getTrendData() {
@@ -59,17 +61,11 @@ export const api = {
 
   async getStateChangesData() {
     await delay(500);
-    return stateChangesData.data;
+    return mockData.stateChangesData;
   },
 
   async getTrendChartData() {
     await delay(500);
     return mockData.trendChartData;
-  },
-
-  async getComments(changeId: number) {
-    await delay(500);
-    const change = recentChanges.data.find(c => c.id === changeId);
-    return change?.comentarios || [];
   }
 };

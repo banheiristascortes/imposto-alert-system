@@ -1,10 +1,88 @@
 {
   "// Importação dos dados do dashboard e análises": "",
-  "recentChanges": require('./dashboard/recentChanges.json').recentChanges,
-  "stateData": require('./dashboard/brazilMap.json').stateData,
-  "stateChangesData": require('./dashboard/stateChanges.json').stateChangesData,
-  "trendChartData": require('./dashboard/trends.json').trendChartData,
-  "dashboardStats": require('./dashboard/stats.json').dashboardStats,
-  "comparativeData": require('./analysis/comparative.json').comparativeData,
-  "trendData": require('./analysis/forecast.json').trendData
+  "recentChanges": {
+    "// Título na UI: Alterações Recentes": "",
+    "data": [
+      {
+        "id": 1,
+        "estado": "SP",
+        "tipo": "ICMS",
+        "descricao": "Alteração na alíquota do ICMS para serviços de telecomunicações",
+        "data": "2024-03-15",
+        "status": "Pendente",
+        "comentarios": [
+          {
+            "id": 1,
+            "usuario": "João Silva",
+            "texto": "Isso afetará significativamente nossos custos",
+            "data": "2024-03-16"
+          }
+        ]
+      }
+    ]
+  },
+  "stateData": {
+    "// Título na UI: Mapa de Alterações": "",
+    "data": [
+      {
+        "state": "SP",
+        "changes": 8
+      },
+      {
+        "state": "RJ",
+        "changes": 5
+      }
+    ]
+  },
+  "stateChangesData": {
+    "// Título na UI: Alterações por Estado": "",
+    "data": [
+      {
+        "estado": "SP",
+        "alteracoes": 12,
+        "impacto": "Alto",
+        "detalhes": "Mudanças significativas na legislação"
+      }
+    ]
+  },
+  "trendChartData": {
+    "// Título na UI: Tendência de Alterações por Tipo": "",
+    "data": [
+      {
+        "mes": "Jan",
+        "icms": 4,
+        "iss": 2,
+        "outros": 1
+      }
+    ]
+  },
+  "dashboardStats": {
+    "// Título na UI: Estatísticas Gerais": "",
+    "data": {
+      "totalChanges": 35,
+      "affectedStates": 15,
+      "pendingChanges": 8,
+      "financialImpact": "1.2M"
+    }
+  },
+  "comparativeData": {
+    "// Título na UI: Análise Comparativa": "",
+    "data": [
+      {
+        "periodo": "2024-Q1",
+        "alteracoes": 25,
+        "impacto": "Médio"
+      }
+    ]
+  },
+  "trendData": {
+    "// Título na UI: Previsão de Tendências": "",
+    "data": [
+      {
+        "mes": "Janeiro",
+        "previsao": 12,
+        "real": 10
+      }
+    ]
+  }
 }

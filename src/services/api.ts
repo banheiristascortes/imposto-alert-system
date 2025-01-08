@@ -29,29 +29,29 @@ export const api = {
   },
 
   // Mock data methods
-  async getNotifications() {
-    await delay(500);
-    return mockData.notifications;
-  },
-
-  async getRecentChanges() {
-    await delay(500);
-    return mockData.recentChangesTable;
-  },
-
-  async getMapData() {
+  async getStateData() {
     await delay(500);
     return mockData.mapStateChanges;
   },
 
-  async getStateComparisonData() {
+  async getComparativeData() {
     await delay(500);
     return mockData.stateComparisonChart;
   },
 
-  async getTrendForecastData() {
+  async getTrendData() {
     await delay(500);
     return mockData.trendForecastChart;
+  },
+
+  async getTrendChartData() {
+    await delay(500);
+    return mockData.monthlyTaxTypeChart;
+  },
+
+  async getStateChangesData() {
+    await delay(500);
+    return mockData.recentChangesTable;
   },
 
   async getDashboardStats() {
@@ -59,13 +59,18 @@ export const api = {
     return mockData.dashboardStatistics;
   },
 
-  async getMonthlyTaxTypeData() {
+  async getNotifications() {
     await delay(500);
-    return mockData.monthlyTaxTypeChart;
+    return mockData.notifications || [];
+  },
+
+  async getRecentChanges() {
+    await delay(500);
+    return mockData.recentChangesTable;
   },
 
   async getComments() {
     await delay(500);
-    return mockData.comments;
+    return mockData.comments || [];
   }
 };

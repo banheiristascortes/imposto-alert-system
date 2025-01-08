@@ -15,6 +15,7 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import { Card } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 
 interface RecentChange {
   id: number;
@@ -22,6 +23,7 @@ interface RecentChange {
   tipo: string;
   descricao: string;
   data: string;
+  status: "pending" | "approved" | "rejected";
 }
 
 interface RecentChangesTableProps {
@@ -30,6 +32,32 @@ interface RecentChangesTableProps {
   totalPages: number;
   onPageChange: (page: number) => void;
 }
+
+const getStatusColor = (status: RecentChange["status"]) => {
+  switch (status) {
+    case "pending":
+      return "bg-yellow-100 text-yellow-800";
+    case "approved":
+      return "bg-green-100 text-green-800";
+    case "rejected":
+      return "bg-red-100 text-red-800";
+    default:
+      return "bg-gray-100 text-gray-800";
+  }
+};
+
+const getStatusText = (status: RecentChange["status"]) => {
+  switch (status) {
+    case "pending":
+      return "Pendente";
+    case "approved":
+      return "Aprovado";
+    case "rejected":
+      return "Rejeitado";
+    default:
+      return status;
+  }
+};
 
 export const RecentChangesTable = ({
   changes,
@@ -47,6 +75,7 @@ export const RecentChangesTable = ({
             <TableHead>Tipo</TableHead>
             <TableHead>Descrição</TableHead>
             <TableHead>Data</TableHead>
+            <TableHead>Status</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -57,6 +86,11 @@ export const RecentChangesTable = ({
               <TableCell>{change.descricao}</TableCell>
               <TableCell>
                 {new Date(change.data).toLocaleDateString("pt-BR")}
+              </TableCell>
+              <TableCell>
+                <Badge className={getStatusColor(change.status)}>
+                  {getStatusText(change.status)}
+                </Badge>
               </TableCell>
             </TableRow>
           ))}

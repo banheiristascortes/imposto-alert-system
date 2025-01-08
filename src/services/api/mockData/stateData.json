@@ -1,0 +1,31 @@
+{
+  "title": "Mapa de Alterações",
+  "data": [
+    { "state": "SP", "changes": 12 },
+    { "state": "RJ", "changes": 8 },
+    { "state": "MG", "changes": 6 },
+    { "state": "RS", "changes": 5 },
+    { "state": "PR", "changes": 4 },
+    { "state": "BA", "changes": 3 },
+    { "state": "SC", "changes": 4 },
+    { "state": "GO", "changes": 2 },
+    { "state": "PE", "changes": 3 },
+    { "state": "CE", "changes": 2 },
+    { "state": "PA", "changes": 1 },
+    { "state": "MT", "changes": 2 },
+    { "state": "ES", "changes": 2 },
+    { "state": "PB", "changes": 1 },
+    { "state": "RN", "changes": 1 },
+    { "state": "MS", "changes": 2 },
+    { "state": "PI", "changes": 1 },
+    { "state": "MA", "changes": 1 },
+    { "state": "RO", "changes": 1 },
+    { "state": "SE", "changes": 1 },
+    { "state": "TO", "changes": 1 },
+    { "state": "AL", "changes": 1 },
+    { "state": "AC", "changes": 1 },
+    { "state": "AP", "changes": 1 },
+    { "state": "RR", "changes": 1 },
+    { "state": "DF", "changes": 2 }
+  ]
+}

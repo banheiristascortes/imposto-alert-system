@@ -1,0 +1,70 @@
+{
+  "title": "Alterações Recentes",
+  "data": [
+    {
+      "id": 1,
+      "estado": "São Paulo",
+      "tipo": "ICMS",
+      "descricao": "Alteração na alíquota de ICMS para serviços de dados",
+      "data": "2024-03-15",
+      "status": "pending",
+      "comentarios": [
+        {
+          "id": 1,
+          "user": "Ana Silva",
+          "texto": "Importante alteração que afetará diretamente o setor de telecomunicações.",
+          "data": "2024-03-16T10:00:00.000Z"
+        },
+        {
+          "id": 2,
+          "user": "Carlos Santos",
+          "texto": "Precisamos avaliar o impacto desta mudança nos contratos atuais.",
+          "data": "2024-03-16T14:30:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "estado": "Rio de Janeiro",
+      "tipo": "ICMS",
+      "descricao": "Novo convênio para tributação de serviços OTT",
+      "data": "2024-03-10",
+      "status": "approved",
+      "comentarios": [
+        {
+          "id": 3,
+          "user": "Marina Santos",
+          "texto": "O novo convênio traz mais clareza para a tributação de streaming.",
+          "data": "2024-03-11T09:15:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "estado": "Minas Gerais",
+      "tipo": "ICMS",
+      "descricao": "Mudança no cálculo da base de ICMS para planos corporativos",
+      "data": "2024-03-05",
+      "status": "pending",
+      "comentarios": []
+    },
+    {
+      "id": 4,
+      "estado": "Rio Grande do Sul",
+      "tipo": "ISS",
+      "descricao": "Atualização na tributação de serviços digitais",
+      "data": "2024-03-01",
+      "status": "approved",
+      "comentarios": []
+    },
+    {
+      "id": 5,
+      "estado": "Paraná",
+      "tipo": "PIS/COFINS",
+      "descricao": "Novas regras para créditos tributários",
+      "data": "2024-02-28",
+      "status": "rejected",
+      "comentarios": []
+    }
+  ]
+}

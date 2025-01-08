@@ -1,15 +1,83 @@
 {
-  "recentChangesTable": [
+  "stateData": [
+    { "state": "SP", "changes": 12 },
+    { "state": "RJ", "changes": 8 },
+    { "state": "MG", "changes": 6 },
+    { "state": "RS", "changes": 5 },
+    { "state": "PR", "changes": 4 },
+    { "state": "BA", "changes": 3 },
+    { "state": "SC", "changes": 4 },
+    { "state": "GO", "changes": 2 },
+    { "state": "PE", "changes": 3 },
+    { "state": "CE", "changes": 2 },
+    { "state": "PA", "changes": 1 },
+    { "state": "MT", "changes": 2 },
+    { "state": "ES", "changes": 2 },
+    { "state": "PB", "changes": 1 },
+    { "state": "RN", "changes": 1 },
+    { "state": "MS", "changes": 2 },
+    { "state": "PI", "changes": 1 },
+    { "state": "MA", "changes": 1 },
+    { "state": "RO", "changes": 1 },
+    { "state": "SE", "changes": 1 },
+    { "state": "TO", "changes": 1 },
+    { "state": "AL", "changes": 1 },
+    { "state": "AC", "changes": 1 },
+    { "state": "AP", "changes": 1 },
+    { "state": "RR", "changes": 1 },
+    { "state": "DF", "changes": 2 }
+  ],
+  "comparativeData": [
+    { "mes": "Jan", "SP": 4, "RJ": 3, "MG": 2, "RS": 2, "PR": 1 },
+    { "mes": "Fev", "SP": 6, "RJ": 4, "MG": 3, "RS": 3, "PR": 2 },
+    { "mes": "Mar", "SP": 8, "RJ": 6, "MG": 4, "RS": 4, "PR": 3 },
+    { "mes": "Abr", "SP": 5, "RJ": 4, "MG": 3, "RS": 2, "PR": 2 },
+    { "mes": "Mai", "SP": 7, "RJ": 5, "MG": 4, "RS": 3, "PR": 2 },
+    { "mes": "Jun", "SP": 6, "RJ": 4, "MG": 3, "RS": 2, "PR": 1 }
+  ],
+  "trendData": [
+    { "mes": "Jun", "atual": 5, "previsao": 5 },
+    { "mes": "Jul", "atual": 6, "previsao": 6 },
+    { "mes": "Ago", "atual": null, "previsao": 7 },
+    { "mes": "Set", "atual": null, "previsao": 8 },
+    { "mes": "Out", "atual": null, "previsao": 7 },
+    { "mes": "Nov", "atual": null, "previsao": 6 },
+    { "mes": "Dez", "atual": null, "previsao": 8 }
+  ],
+  "notifications": [
+    {
+      "id": "1",
+      "title": "Atualização ICMS",
+      "message": "Nova alteração na legislação do ICMS em São Paulo",
+      "type": "info",
+      "createdAt": "2024-03-20T10:00:00.000Z",
+      "read": false
+    },
+    {
+      "id": "2",
+      "title": "Alerta Fiscal",
+      "message": "Prazo de adequação às novas regras se encerra em 30 dias",
+      "type": "warning",
+      "createdAt": "2024-03-19T15:30:00.000Z",
+      "read": false
+    },
+    {
+      "id": "3",
+      "title": "Nova Legislação",
+      "message": "Publicada nova legislação sobre ISS no Rio de Janeiro",
+      "type": "info",
+      "createdAt": "2024-03-18T09:15:00.000Z",
+      "read": true
+    }
+  ],
+  "taxChanges": [
     {
       "id": 1,
       "estado": "São Paulo",
       "tipo": "ICMS",
       "descricao": "Alteração na alíquota de ICMS para serviços de dados",
       "data": "2024-03-15",
-      "status": "pending",
-      "alteracoes": 15,
-      "impacto": "Alto",
-      "detalhes": "Mudança significativa na tributação de serviços de telecomunicações"
+      "status": "pending"
     },
     {
       "id": 2,
@@ -17,10 +85,7 @@
       "tipo": "ICMS",
       "descricao": "Novo convênio para tributação de serviços OTT",
       "data": "2024-03-10",
-      "status": "approved",
-      "alteracoes": 8,
-      "impacto": "Médio",
-      "detalhes": "Atualização das regras para serviços de streaming"
+      "status": "approved"
     },
     {
       "id": 3,
@@ -28,52 +93,51 @@
       "tipo": "ICMS",
       "descricao": "Mudança no cálculo da base de ICMS para planos corporativos",
       "data": "2024-03-05",
-      "status": "pending",
-      "alteracoes": 12,
-      "impacto": "Alto",
-      "detalhes": "Revisão da base de cálculo para contratos empresariais"
+      "status": "pending"
+    },
+    {
+      "id": 4,
+      "estado": "Rio Grande do Sul",
+      "tipo": "ISS",
+      "descricao": "Atualização na tributação de serviços digitais",
+      "data": "2024-03-01",
+      "status": "approved"
+    },
+    {
+      "id": 5,
+      "estado": "Paraná",
+      "tipo": "PIS/COFINS",
+      "descricao": "Novas regras para créditos tributários",
+      "data": "2024-02-28",
+      "status": "approved"
+    },
+    {
+      "id": 6,
+      "estado": "Bahia",
+      "tipo": "ICMS",
+      "descricao": "Atualização de alíquotas para serviços de telecomunicações",
+      "data": "2024-02-25",
+      "status": "pending"
     }
   ],
-  "mapStateChanges": [
-    { "state": "SP", "changes": 12 },
-    { "state": "RJ", "changes": 8 },
-    { "state": "MG", "changes": 6 }
-  ],
-  "stateComparisonChart": [
-    { "mes": "Jan", "SP": 4, "RJ": 3, "MG": 2 },
-    { "mes": "Fev", "SP": 6, "RJ": 4, "MG": 3 },
-    { "mes": "Mar", "SP": 8, "RJ": 6, "MG": 4 }
-  ],
-  "trendForecastChart": [
-    { "mes": "Jun", "atual": 5, "previsao": 5 },
-    { "mes": "Jul", "atual": 6, "previsao": 6 },
-    { "mes": "Ago", "atual": null, "previsao": 7 }
-  ],
-  "dashboardStatistics": {
+  "dashboardStats": {
     "totalChanges": 35,
     "affectedStates": 15,
     "pendingChanges": 8,
     "financialImpact": "1.2M"
   },
-  "monthlyTaxTypeChart": [
+  "stateChangesData": [
+    { "estado": "SP", "alteracoes": 12, "impacto": "Alto", "detalhes": "Principais mudanças em ICMS" },
+    { "estado": "RJ", "alteracoes": 8, "impacto": "Médio", "detalhes": "Alterações em ISS" },
+    { "estado": "MG", "alteracoes": 6, "impacto": "Médio", "detalhes": "Novos convênios" },
+    { "estado": "RS", "alteracoes": 5, "impacto": "Baixo", "detalhes": "Atualizações menores" },
+    { "estado": "PR", "alteracoes": 4, "impacto": "Baixo", "detalhes": "Ajustes técnicos" }
+  ],
+  "trendChartData": [
     { "mes": "Jan", "icms": 4, "iss": 2, "outros": 1 },
     { "mes": "Fev", "icms": 6, "iss": 3, "outros": 2 },
-    { "mes": "Mar", "icms": 8, "iss": 4, "outros": 3 }
-  ],
-  "notifications": [
-    {
-      "id": 1,
-      "title": "Nova alteração fiscal",
-      "message": "Alteração na alíquota de ICMS em São Paulo",
-      "date": "2024-03-15"
-    }
-  ],
-  "comments": [
-    {
-      "id": 1,
-      "user": "Ana Silva",
-      "text": "Importante alteração que afetará diretamente o setor de telecomunicações.",
-      "date": "2024-03-15"
-    }
+    { "mes": "Mar", "icms": 8, "iss": 4, "outros": 3 },
+    { "mes": "Abr", "icms": 5, "iss": 2, "outros": 2 },
+    { "mes": "Mai", "icms": 7, "iss": 3, "outros": 1 }
   ]
 }

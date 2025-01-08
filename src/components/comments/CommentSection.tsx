@@ -1,10 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { MessageSquare } from "lucide-react";
-import { api } from "@/services/api";
 
 interface Comment {
   id: number;
@@ -13,19 +12,25 @@ interface Comment {
   date: string;
 }
 
+const mockComments: Comment[] = [
+  {
+    id: 1,
+    user: "Ana Silva",
+    text: "Importante alteração que afetará diretamente o setor de telecomunicações.",
+    date: "2024-03-15",
+  },
+  {
+    id: 2,
+    user: "Carlos Santos",
+    text: "Precisamos avaliar o impacto desta mudança nos contratos atuais.",
+    date: "2024-03-14",
+  },
+];
+
 export const CommentSection = () => {
-  const [comments, setComments] = useState<Comment[]>([]);
+  const [comments, setComments] = useState<Comment[]>(mockComments);
   const [newComment, setNewComment] = useState("");
   const { toast } = useToast();
-
-  useEffect(() => {
-    const fetchComments = async () => {
-      const data = await api.getComments();
-      setComments(data);
-    };
-
-    fetchComments();
-  }, []);
 
   const handleAddComment = () => {
     if (!newComment.trim()) return;

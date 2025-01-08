@@ -1,4 +1,5 @@
 {
+  "// Dados para o Mapa de Alterações (BrazilMap)": "",
   "stateData": [
     { "state": "SP", "changes": 12 },
     { "state": "RJ", "changes": 8 },
@@ -27,6 +28,8 @@
     { "state": "RR", "changes": 1 },
     { "state": "DF", "changes": 2 }
   ],
+
+  "// Dados para Análise Comparativa entre Estados (ComparativeAnalysis)": "",
   "comparativeData": [
     { "mes": "Jan", "SP": 4, "RJ": 3, "MG": 2, "RS": 2, "PR": 1 },
     { "mes": "Fev", "SP": 6, "RJ": 4, "MG": 3, "RS": 3, "PR": 2 },
@@ -35,6 +38,8 @@
     { "mes": "Mai", "SP": 7, "RJ": 5, "MG": 4, "RS": 3, "PR": 2 },
     { "mes": "Jun", "SP": 6, "RJ": 4, "MG": 3, "RS": 2, "PR": 1 }
   ],
+
+  "// Dados para Previsão de Tendências (TrendForecast)": "",
   "trendData": [
     { "mes": "Jun", "atual": 5, "previsao": 5 },
     { "mes": "Jul", "atual": 6, "previsao": 6 },
@@ -44,6 +49,8 @@
     { "mes": "Nov", "atual": null, "previsao": 6 },
     { "mes": "Dez", "atual": null, "previsao": 8 }
   ],
+
+  "// Dados para Notificações (NotificationBell)": "",
   "notifications": [
     {
       "id": "1",
@@ -70,6 +77,8 @@
       "read": true
     }
   ],
+
+  "// Dados para Alterações Recentes (RecentChangesTable)": "",
   "taxChanges": [
     {
       "id": 1,
@@ -77,7 +86,21 @@
       "tipo": "ICMS",
       "descricao": "Alteração na alíquota de ICMS para serviços de dados",
       "data": "2024-03-15",
-      "status": "pending"
+      "status": "pending",
+      "comentarios": [
+        {
+          "id": 1,
+          "usuario": "Ana Silva",
+          "texto": "Essa alteração afetará significativamente nossos custos operacionais.",
+          "data": "2024-03-16T10:00:00.000Z"
+        },
+        {
+          "id": 2,
+          "usuario": "Carlos Oliveira",
+          "texto": "Precisamos avaliar o impacto nos contratos atuais.",
+          "data": "2024-03-16T14:30:00.000Z"
+        }
+      ]
     },
     {
       "id": 2,
@@ -85,7 +108,15 @@
       "tipo": "ICMS",
       "descricao": "Novo convênio para tributação de serviços OTT",
       "data": "2024-03-10",
-      "status": "approved"
+      "status": "approved",
+      "comentarios": [
+        {
+          "id": 3,
+          "usuario": "Marina Santos",
+          "texto": "O novo convênio traz mais clareza para a tributação de streaming.",
+          "data": "2024-03-11T09:15:00.000Z"
+        }
+      ]
     },
     {
       "id": 3,
@@ -93,7 +124,15 @@
       "tipo": "ICMS",
       "descricao": "Mudança no cálculo da base de ICMS para planos corporativos",
       "data": "2024-03-05",
-      "status": "pending"
+      "status": "pending",
+      "comentarios": [
+        {
+          "id": 4,
+          "usuario": "Pedro Costa",
+          "texto": "Necessário revisar a metodologia de cálculo atual.",
+          "data": "2024-03-06T11:20:00.000Z"
+        }
+      ]
     },
     {
       "id": 4,
@@ -101,7 +140,8 @@
       "tipo": "ISS",
       "descricao": "Atualização na tributação de serviços digitais",
       "data": "2024-03-01",
-      "status": "approved"
+      "status": "approved",
+      "comentarios": []
     },
     {
       "id": 5,
@@ -109,30 +149,54 @@
       "tipo": "PIS/COFINS",
       "descricao": "Novas regras para créditos tributários",
       "data": "2024-02-28",
-      "status": "approved"
-    },
-    {
-      "id": 6,
-      "estado": "Bahia",
-      "tipo": "ICMS",
-      "descricao": "Atualização de alíquotas para serviços de telecomunicações",
-      "data": "2024-02-25",
-      "status": "pending"
+      "status": "approved",
+      "comentarios": []
     }
   ],
+
+  "// Dados para Estatísticas do Dashboard (DashboardStats)": "",
   "dashboardStats": {
     "totalChanges": 35,
     "affectedStates": 15,
     "pendingChanges": 8,
     "financialImpact": "1.2M"
   },
+
+  "// Dados para Gráfico de Alterações por Estado (StateChangesChart)": "",
   "stateChangesData": [
-    { "estado": "SP", "alteracoes": 12, "impacto": "Alto", "detalhes": "Principais mudanças em ICMS" },
-    { "estado": "RJ", "alteracoes": 8, "impacto": "Médio", "detalhes": "Alterações em ISS" },
-    { "estado": "MG", "alteracoes": 6, "impacto": "Médio", "detalhes": "Novos convênios" },
-    { "estado": "RS", "alteracoes": 5, "impacto": "Baixo", "detalhes": "Atualizações menores" },
-    { "estado": "PR", "alteracoes": 4, "impacto": "Baixo", "detalhes": "Ajustes técnicos" }
+    { 
+      "estado": "SP", 
+      "alteracoes": 12, 
+      "impacto": "Alto", 
+      "detalhes": "Principais mudanças em ICMS" 
+    },
+    { 
+      "estado": "RJ", 
+      "alteracoes": 8, 
+      "impacto": "Médio", 
+      "detalhes": "Alterações em ISS" 
+    },
+    { 
+      "estado": "MG", 
+      "alteracoes": 6, 
+      "impacto": "Médio", 
+      "detalhes": "Novos convênios" 
+    },
+    { 
+      "estado": "RS", 
+      "alteracoes": 5, 
+      "impacto": "Baixo", 
+      "detalhes": "Atualizações menores" 
+    },
+    { 
+      "estado": "PR", 
+      "alteracoes": 4, 
+      "impacto": "Baixo", 
+      "detalhes": "Ajustes técnicos" 
+    }
   ],
+
+  "// Dados para Gráfico de Tendências por Tipo (TrendChart)": "",
   "trendChartData": [
     { "mes": "Jan", "icms": 4, "iss": 2, "outros": 1 },
     { "mes": "Fev", "icms": 6, "iss": 3, "outros": 2 },

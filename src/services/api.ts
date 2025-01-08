@@ -67,5 +67,11 @@ export const api = {
   async getTrendChartData() {
     await delay(500);
     return mockData.trendChartData;
+  },
+
+  async getComments(changeId: number) {
+    await delay(500);
+    const change = mockData.taxChanges.find(c => c.id === changeId);
+    return change?.comentarios || [];
   }
 };

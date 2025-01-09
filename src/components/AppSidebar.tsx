@@ -44,27 +44,34 @@ export const AppSidebar = () => {
       </Button>
 
       <div className="p-6">
-        <h1 
-          className={cn(
-            "font-bold mb-8 text-[hsl(var(--sidebar-accent))] transition-all duration-300 text-center",
-            isCollapsed ? "text-xl" : "text-2xl"
+        <div className="mb-8 flex justify-center">
+          {isCollapsed ? (
+            <img 
+              src="/lovable-uploads/199e7e55-02fc-47bd-bbff-963bb874d9b3.png" 
+              alt="TT Logo" 
+              className="h-8 w-auto"
+            />
+          ) : (
+            <img 
+              src="/lovable-uploads/159d4b7c-93c2-492d-b942-a5f19dc57a22.png" 
+              alt="TaxTracker Logo" 
+              className="h-8 w-auto"
+            />
           )}
-        >
-          {isCollapsed ? "TT" : "TaxTracker"}
-        </h1>
+        </div>
         <nav>
-          <ul className="space-y-2">
+          <ul className="space-y-3">
             {menuItems.map(({ icon: Icon, label, path }) => (
               <li key={path}>
                 <Link
                   to={path}
                   className={cn(
-                    "flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all duration-200",
+                    "flex items-center gap-3 py-3 rounded-lg transition-all duration-200",
                     "hover:bg-[hsl(var(--sidebar-accent))] hover:text-[hsl(var(--sidebar-accent-foreground))]",
                     location.pathname === path
                       ? "bg-[hsl(var(--sidebar-accent))] text-[hsl(var(--sidebar-accent-foreground))] shadow-sm"
                       : "text-[hsl(var(--sidebar-foreground))] hover:translate-x-1",
-                    isCollapsed && "justify-center px-2"
+                    isCollapsed ? "justify-center px-3" : "px-4"
                   )}
                   title={isCollapsed ? label : undefined}
                 >

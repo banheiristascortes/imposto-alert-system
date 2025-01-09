@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Bell } from "lucide-react";
+import { api } from "@/services/api";
+import { useToast } from "@/hooks/use-toast";
 
 interface Notification {
   id: number;
@@ -11,33 +13,30 @@ interface Notification {
   read: boolean;
 }
 
-const mockNotifications: Notification[] = [
-  {
-    id: 1,
-    title: "Nova alteração em SP",
-    description: "Alteração na alíquota de ICMS para serviços de dados",
-    date: "2024-03-15",
-    read: false,
-  },
-  {
-    id: 2,
-    title: "Atualização RJ",
-    description: "Novo convênio para tributação de serviços OTT",
-    date: "2024-03-10",
-    read: false,
-  },
-  {
-    id: 3,
-    title: "Mudança MG",
-    description: "Alteração na base de cálculo para serviços de telecomunicações",
-    date: "2024-03-08",
-    read: true,
-  },
-];
-
 export const NotificationsPage = () => {
   const navigate = useNavigate();
-  const [notifications, setNotifications] = useState(mockNotifications);
+  const { toast } = useToast();
+  const [notifications, setNotifications] = useState<Notification[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchNotifications = async () => {
+      try {
+        const data = await api.getNotifications();
+        setNotifications(data);
+      } catch (error) {
+        toast({
+          title: "Erro",
+          description: "Não foi possível carregar as notificações",
+          variant: "destructive",
+        });
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchNotifications();
+  }, [toast]);
 
   const markAsRead = (id: number) => {
     setNotifications(
@@ -60,27 +59,33 @@ export const NotificationsPage = () => {
 
       <main className="container mx-auto py-8 px-4">
         <div className="bg-white rounded-lg shadow-sm p-6 space-y-4">
-          {notifications.map((notification) => (
-            <div
-              key={notification.id}
-              className={`p-4 rounded-lg border transition-all duration-200 hover:shadow-md ${
-                notification.read ? "bg-gray-50" : "bg-blue-50"
-              }`}
-              onClick={() => markAsRead(notification.id)}
-            >
-              <div className="flex items-start gap-4">
-                <Bell className="h-5 w-5 text-primary-500 mt-1" />
-                <div className="flex-1">
-                  <h3 className="text-lg font-semibold">{notification.title}</h3>
-                  <p className="text-gray-600">{notification.description}</p>
-                  <span className="text-sm text-gray-400">{notification.date}</span>
+          {isLoading ? (
+            <div className="text-center py-4">Carregando notificações...</div>
+          ) : notifications.length === 0 ? (
+            <div className="text-center py-4">Nenhuma notificação encontrada</div>
+          ) : (
+            notifications.map((notification) => (
+              <div
+                key={notification.id}
+                className={`p-4 rounded-lg border transition-all duration-200 hover:shadow-md ${
+                  notification.read ? "bg-gray-50" : "bg-blue-50"
+                }`}
+                onClick={() => markAsRead(notification.id)}
+              >
+                <div className="flex items-start gap-4">
+                  <Bell className="h-5 w-5 text-primary-500 mt-1" />
+                  <div className="flex-1">
+                    <h3 className="text-lg font-semibold">{notification.title}</h3>
+                    <p className="text-gray-600">{notification.description}</p>
+                    <span className="text-sm text-gray-400">{notification.date}</span>
+                  </div>
+                  {!notification.read && (
+                    <div className="h-2 w-2 rounded-full bg-blue-500" />
+                  )}
                 </div>
-                {!notification.read && (
-                  <div className="h-2 w-2 rounded-full bg-blue-500" />
-                )}
               </div>
-            </div>
-          ))}
+            ))
+          )}
         </div>
       </main>
     </div>

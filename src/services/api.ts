@@ -67,5 +67,10 @@ export const api = {
   async getTrendChartData() {
     await delay(500);
     return mockData.trendChartData;
+  },
+
+  async getComments() {
+    await delay(500);
+    return mockData.comments;
   }
 };

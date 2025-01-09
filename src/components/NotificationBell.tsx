@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { Bell } from "lucide-react";
 import {
   HoverCard,
@@ -6,6 +7,8 @@ import {
 } from "@/components/ui/hover-card";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
+import { api } from "@/services/api";
+import { useToast } from "@/hooks/use-toast";
 
 interface Notification {
   id: number;
@@ -15,26 +18,32 @@ interface Notification {
   read: boolean;
 }
 
-const mockNotifications: Notification[] = [
-  {
-    id: 1,
-    title: "Nova alteração em SP",
-    description: "Alteração na alíquota de ICMS para serviços de dados",
-    date: "2024-03-15",
-    read: false,
-  },
-  {
-    id: 2,
-    title: "Atualização RJ",
-    description: "Novo convênio para tributação de serviços OTT",
-    date: "2024-03-10",
-    read: false,
-  },
-];
-
 export const NotificationBell = () => {
   const navigate = useNavigate();
-  const unreadCount = mockNotifications.filter((n) => !n.read).length;
+  const { toast } = useToast();
+  const [notifications, setNotifications] = useState<Notification[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchNotifications = async () => {
+      try {
+        const data = await api.getNotifications();
+        setNotifications(data);
+      } catch (error) {
+        toast({
+          title: "Erro",
+          description: "Não foi possível carregar as notificações",
+          variant: "destructive",
+        });
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchNotifications();
+  }, [toast]);
+
+  const unreadCount = notifications.filter((n) => !n.read).length;
 
   return (
     <HoverCard>
@@ -60,20 +69,26 @@ export const NotificationBell = () => {
               Ver todas
             </Button>
           </div>
-          <div className="space-y-2">
-            {mockNotifications.map((notification) => (
-              <div
-                key={notification.id}
-                className={`p-2 rounded-lg ${
-                  notification.read ? "bg-gray-50" : "bg-blue-50"
-                }`}
-              >
-                <h5 className="text-sm font-medium">{notification.title}</h5>
-                <p className="text-xs text-gray-500">{notification.description}</p>
-                <span className="text-xs text-gray-400">{notification.date}</span>
-              </div>
-            ))}
-          </div>
+          {isLoading ? (
+            <div className="text-center py-2">Carregando...</div>
+          ) : notifications.length === 0 ? (
+            <div className="text-center py-2">Nenhuma notificação</div>
+          ) : (
+            <div className="space-y-2">
+              {notifications.slice(0, 2).map((notification) => (
+                <div
+                  key={notification.id}
+                  className={`p-2 rounded-lg ${
+                    notification.read ? "bg-gray-50" : "bg-blue-50"
+                  }`}
+                >
+                  <h5 className="text-sm font-medium">{notification.title}</h5>
+                  <p className="text-xs text-gray-500">{notification.description}</p>
+                  <span className="text-xs text-gray-400">{notification.date}</span>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </HoverCardContent>
     </HoverCard>

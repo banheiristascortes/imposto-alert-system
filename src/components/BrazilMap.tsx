@@ -41,7 +41,9 @@ export const BrazilMap = () => {
     const initializeMap = async () => {
       if (!mapContainer.current || map.current) return;
 
-      const stateData = await api.getStateData();
+      const response = await api.getStateData();
+      // Acessando a propriedade 'data' do objeto retornado
+      const stateData = response.data || [];
 
       // Initialize map
       map.current = L.map(mapContainer.current).setView([-15.0, -55.0], 4);

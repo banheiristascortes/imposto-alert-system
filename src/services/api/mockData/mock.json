@@ -1,4 +1,16 @@
 {
+  "userData": {
+    "id": "1",
+    "name": "Matheus H",
+    "email": "matheush@kyros.com.br",
+    "password": "Emp@193057",
+    "role": "admin",
+    "preferences": {
+      "emailNotifications": true,
+      "darkMode": false
+    },
+    "avatar": "/placeholder.svg"
+  },
   "stateData": [
     { "state": "SP", "changes": 12 },
     { "state": "RJ", "changes": 8 },

@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
 import { UserRound, Lock } from "lucide-react";
+import { api } from "@/services/api";
 
 export const LoginForm = () => {
   const [email, setEmail] = useState("");
@@ -11,19 +12,29 @@ export const LoginForm = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (email === "matheush@kyros.com.br" && password === "Emp@193057") {
-      toast({
-        title: "Login realizado com sucesso!",
-        description: "Bem-vindo ao sistema de acompanhamento fiscal.",
-      });
-      navigate("/dashboard");
-    } else {
+    try {
+      const userData = await api.getUserData();
+      if (email === userData.email && password === userData.password) {
+        toast({
+          title: "Login realizado com sucesso!",
+          description: "Bem-vindo ao sistema de acompanhamento fiscal.",
+        });
+        navigate("/dashboard");
+      } else {
+        toast({
+          title: "Erro no login",
+          description: "Email ou senha incorretos.",
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      console.error("Error fetching user data:", error);
       toast({
         title: "Erro no login",
-        description: "Email ou senha incorretos.",
+        description: "Ocorreu um erro ao tentar fazer login.",
         variant: "destructive",
       });
     }

@@ -28,7 +28,11 @@ export const api = {
     return response.json();
   },
 
-  // Mock data methods
+  async getUserData() {
+    await delay(500);
+    return mockData.userData;
+  },
+
   async getNotifications() {
     await delay(500);
     return mockData.notifications;

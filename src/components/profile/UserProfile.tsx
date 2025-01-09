@@ -1,16 +1,42 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
 import { Avatar } from "@/components/ui/avatar";
 import { useToast } from "@/hooks/use-toast";
 import { User, Mail, Camera } from "lucide-react";
+import { api } from "@/services/api";
 
 export const UserProfile = () => {
   const { toast } = useToast();
-  const [name, setName] = useState("João Silva");
-  const [email, setEmail] = useState("joao.silva@exemplo.com");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [avatar, setAvatar] = useState("/placeholder.svg");
+  const [preferences, setPreferences] = useState({
+    emailNotifications: false,
+    darkMode: false,
+  });
+
+  useEffect(() => {
+    const loadUserData = async () => {
+      try {
+        const userData = await api.getUserData();
+        setName(userData.name);
+        setEmail(userData.email);
+        setAvatar(userData.avatar);
+        setPreferences(userData.preferences);
+      } catch (error) {
+        console.error("Error loading user data:", error);
+        toast({
+          title: "Erro",
+          description: "Não foi possível carregar os dados do usuário.",
+          variant: "destructive",
+        });
+      }
+    };
+
+    loadUserData();
+  }, [toast]);
 
   const handleSave = () => {
     toast({
@@ -84,11 +110,27 @@ export const UserProfile = () => {
             <h3 className="text-lg font-semibold mb-2">Preferências</h3>
             <div className="space-y-2">
               <label className="flex items-center space-x-2">
-                <input type="checkbox" className="rounded" />
+                <input 
+                  type="checkbox" 
+                  className="rounded"
+                  checked={preferences.emailNotifications}
+                  onChange={(e) => setPreferences(prev => ({
+                    ...prev,
+                    emailNotifications: e.target.checked
+                  }))}
+                />
                 <span>Receber notificações por email</span>
               </label>
               <label className="flex items-center space-x-2">
-                <input type="checkbox" className="rounded" />
+                <input 
+                  type="checkbox" 
+                  className="rounded"
+                  checked={preferences.darkMode}
+                  onChange={(e) => setPreferences(prev => ({
+                    ...prev,
+                    darkMode: e.target.checked
+                  }))}
+                />
                 <span>Ativar modo escuro automaticamente</span>
               </label>
             </div>

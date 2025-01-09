@@ -47,7 +47,8 @@ export const StateChangesChart = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const stateChanges = await api.getStateChangesData();
+      const response = await api.getStateChangesData();
+      const stateChanges = response.data || [];
       setData(stateChanges);
       setZoomDomain({ start: 0, end: stateChanges.length - 1 });
     };

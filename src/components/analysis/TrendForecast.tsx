@@ -12,12 +12,12 @@ import { useEffect, useState } from "react";
 import { api } from "@/services/api";
 
 export const TrendForecast = () => {
-  const [data, setData] = useState<any[]>([]);
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await api.getTrendData();
-      setData(response.data || []);
+      const trendData = await api.getTrendData();
+      setData(trendData);
     };
 
     fetchData();

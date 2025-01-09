@@ -17,12 +17,12 @@ import { api } from "@/services/api";
 
 export const ComparativeAnalysis = () => {
   const { toast } = useToast();
-  const [data, setData] = useState<any[]>([]);
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await api.getComparativeData();
-      setData(response.data || []);
+      const comparativeData = await api.getComparativeData();
+      setData(comparativeData);
     };
 
     fetchData();

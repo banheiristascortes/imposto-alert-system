@@ -22,8 +22,9 @@ export const NotificationsPage = () => {
   useEffect(() => {
     const fetchNotifications = async () => {
       try {
-        const data = await api.getNotifications();
-        setNotifications(data);
+        const response = await api.getNotifications();
+        // Acessando a propriedade 'data' do objeto retornado
+        setNotifications(response.data || []);
       } catch (error) {
         toast({
           title: "Erro",

@@ -24,8 +24,8 @@ export const TrendChart = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const trendData = await api.getTrendChartData();
-      setData(trendData);
+      const response = await api.getTrendChartData();
+      setData(response.data || []);
     };
 
     fetchData();

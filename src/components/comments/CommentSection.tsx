@@ -22,8 +22,8 @@ export const CommentSection = () => {
   useEffect(() => {
     const fetchComments = async () => {
       try {
-        const data = await api.getComments();
-        setComments(data);
+        const response = await api.getComments();
+        setComments(response.data || []);
       } catch (error) {
         toast({
           title: "Erro",

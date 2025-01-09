@@ -46,7 +46,7 @@ export const AppSidebar = () => {
       <div className="p-6">
         <h1 
           className={cn(
-            "font-bold mb-8 text-[hsl(var(--sidebar-accent))] transition-all duration-300",
+            "font-bold mb-8 text-[hsl(var(--sidebar-accent))] transition-all duration-300 text-center",
             isCollapsed ? "text-xl" : "text-2xl"
           )}
         >
@@ -63,7 +63,8 @@ export const AppSidebar = () => {
                     "hover:bg-[hsl(var(--sidebar-accent))] hover:text-[hsl(var(--sidebar-accent-foreground))]",
                     location.pathname === path
                       ? "bg-[hsl(var(--sidebar-accent))] text-[hsl(var(--sidebar-accent-foreground))] shadow-sm"
-                      : "text-[hsl(var(--sidebar-foreground))] hover:translate-x-1"
+                      : "text-[hsl(var(--sidebar-foreground))] hover:translate-x-1",
+                    isCollapsed && "justify-center px-2"
                   )}
                   title={isCollapsed ? label : undefined}
                 >

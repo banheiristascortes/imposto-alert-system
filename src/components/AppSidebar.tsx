@@ -47,14 +47,14 @@ export const AppSidebar = () => {
         <div className="mb-8 flex justify-center">
           {isCollapsed ? (
             <img 
-              src="/lovable-uploads/199e7e55-02fc-47bd-bbff-963bb874d9b3.png" 
-              alt="TT Logo" 
+              src="/lovable-uploads/159d4b7c-93c2-492d-b942-a5f19dc57a22.png" 
+              alt="TaxTracker Logo" 
               className="h-8 w-auto"
             />
           ) : (
             <img 
-              src="/lovable-uploads/159d4b7c-93c2-492d-b942-a5f19dc57a22.png" 
-              alt="TaxTracker Logo" 
+              src="/lovable-uploads/199e7e55-02fc-47bd-bbff-963bb874d9b3.png" 
+              alt="TT Logo" 
               className="h-8 w-auto"
             />
           )}

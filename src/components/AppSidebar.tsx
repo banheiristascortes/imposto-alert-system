@@ -49,13 +49,14 @@ export const AppSidebar = () => {
             <img 
               src="/lovable-uploads/159d4b7c-93c2-492d-b942-a5f19dc57a22.png" 
               alt="K Logo" 
-              className="h-16 w-auto" // Increased from h-12 to h-16
+              className="w-[72px] h-[49px] cursor-pointer"
             />
           ) : (
             <img 
               src="/lovable-uploads/199e7e55-02fc-47bd-bbff-963bb874d9b3.png" 
               alt="Kyros Logo" 
-              className="h-16 w-auto" // Increased from h-12 to h-16
+              className="w-[180px] h-[58px] cursor-pointer text-center"
+              style={{ fontSize: '16px' }}
             />
           )}
         </div>

@@ -47,13 +47,13 @@ export const AppSidebar = () => {
         <div className="mb-8 flex justify-center">
           {isCollapsed ? (
             <img 
-              src="/lovable-uploads/159d4b7c-93c2-492d-b942-a5f19dc57a22.png" 
+              src="https://portal.kyros.com.br/portal/assets/images/icon.png" 
               alt="K Logo" 
               className="w-[72px] h-[49px] cursor-pointer"
             />
           ) : (
             <img 
-              src="/lovable-uploads/199e7e55-02fc-47bd-bbff-963bb874d9b3.png" 
+              src="https://portal.kyros.com.br/portal/assets/images/logo.png" 
               alt="Kyros Logo" 
               className="w-[180px] h-[58px] cursor-pointer text-center"
               style={{ fontSize: '16px' }}

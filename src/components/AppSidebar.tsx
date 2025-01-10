@@ -49,13 +49,13 @@ export const AppSidebar = () => {
             <img 
               src="/lovable-uploads/159d4b7c-93c2-492d-b942-a5f19dc57a22.png" 
               alt="K Logo" 
-              className="h-12 w-auto" // Increased from h-8 to h-12
+              className="h-16 w-auto" // Increased from h-12 to h-16
             />
           ) : (
             <img 
               src="/lovable-uploads/199e7e55-02fc-47bd-bbff-963bb874d9b3.png" 
               alt="Kyros Logo" 
-              className="h-12 w-auto" // Increased from h-8 to h-12
+              className="h-16 w-auto" // Increased from h-12 to h-16
             />
           )}
         </div>

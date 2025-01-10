@@ -15,7 +15,7 @@ import { Button } from "./ui/button";
 
 export const AppSidebar = () => {
   const location = useLocation();
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(true);
 
   const menuItems = [
     { icon: LayoutDashboard, label: "Dashboard", path: "/dashboard" },
@@ -31,7 +31,7 @@ export const AppSidebar = () => {
     <aside 
       className={cn(
         "transition-all duration-300 ease-in-out bg-[hsl(var(--sidebar-background))] text-[hsl(var(--sidebar-foreground))] border-r border-[hsl(var(--sidebar-border))] min-h-screen relative",
-        isCollapsed ? "w-[4.5rem]" : "w-64"
+        isCollapsed ? "w-[7rem]" : "w-64"
       )}
     >
       <Button

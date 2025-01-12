@@ -56,6 +56,23 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        brand: {
+          teal: {
+            DEFAULT: "hsl(var(--brand-teal-primary))",
+            light: "hsl(var(--brand-teal-light))",
+            dark: "hsl(var(--brand-teal-dark))",
+          },
+          purple: {
+            DEFAULT: "hsl(var(--brand-purple-primary))",
+            light: "hsl(var(--brand-purple-light))",
+            dark: "hsl(var(--brand-purple-dark))",
+          },
+          yellow: {
+            DEFAULT: "hsl(var(--brand-yellow-primary))",
+            light: "hsl(var(--brand-yellow-light))",
+            dark: "hsl(var(--brand-yellow-dark))",
+          },
+        },
       },
       borderRadius: {
         lg: "var(--radius)",

@@ -44,6 +44,7 @@ export const LoginForm = () => {
           title: "Erro no login",
           description: "Email ou senha incorretos.",
           variant: "destructive",
+          duration: 3000,
         });
       }
     } catch (error) {
@@ -52,6 +53,7 @@ export const LoginForm = () => {
         title: "Erro no login",
         description: "Ocorreu um erro ao tentar fazer login.",
         variant: "destructive",
+        duration: 3000,
       });
     } finally {
       setIsLoading(false);

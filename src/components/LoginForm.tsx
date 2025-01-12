@@ -15,21 +15,22 @@ export const LoginForm = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!email || !password) {
+      toast({
+        title: "Erro no login",
+        description: "Por favor, preencha todos os campos.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setIsLoading(true);
     
     try {
       console.log("Attempting login with:", { email });
       const userData = await api.getUserData();
       
-      if (!email || !password) {
-        toast({
-          title: "Erro no login",
-          description: "Por favor, preencha todos os campos.",
-          variant: "destructive",
-        });
-        return;
-      }
-
       if (email === userData.email && password === userData.password) {
         console.log("Login successful");
         toast({

@@ -17,6 +17,12 @@
 - Sidebar profissional
 - Sistema de notificações básico
 
+### Autenticação e Autorização
+- ✅ Proteção de rotas
+- ✅ Redirecionamento para login
+- Sistema de login/logout básico
+- Gerenciamento de sessão básico
+
 ### Dados
 - Mock data centralizado
 - Simulação de API
@@ -25,11 +31,10 @@
 
 ### Prioridade Alta
 1. **Autenticação e Autorização**
-   - [ ] Sistema de login/logout
-   - [ ] Proteção de rotas
-   - [ ] Gerenciamento de sessão
-   - [ ] Página de registro
+   - [ ] Sistema de registro
    - [ ] Recuperação de senha
+   - [ ] Refresh token
+   - [ ] Persistência de sessão
 
 2. **Perfil e Usuário**
    - [ ] Edição de perfil

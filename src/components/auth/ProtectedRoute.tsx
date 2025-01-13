@@ -16,5 +16,6 @@ export const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
     return <Navigate to={ROUTES.HOME} replace />;
   }
 
+  console.log("ProtectedRoute - User is authenticated, rendering protected content");
   return <>{children}</>;
 };

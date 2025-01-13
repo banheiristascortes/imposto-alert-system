@@ -5,7 +5,6 @@ import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import { UserRound, Lock } from "lucide-react";
 import { api } from "@/services/api";
-import { ROUTES } from "@/constants/app";
 
 export const LoginForm = () => {
   const [email, setEmail] = useState("");
@@ -33,12 +32,12 @@ export const LoginForm = () => {
       const userData = await api.getUserData();
       
       if (email === userData.email && password === userData.password) {
-        console.log("Login successful, redirecting to dashboard");
+        console.log("Login successful");
         toast({
           title: "Login realizado com sucesso!",
           description: "Bem-vindo ao sistema de acompanhamento fiscal.",
         });
-        navigate(ROUTES.DASHBOARD);
+        navigate("/dashboard");
       } else {
         console.log("Login failed: Invalid credentials");
         toast({

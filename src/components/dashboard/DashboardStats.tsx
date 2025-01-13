@@ -29,25 +29,21 @@ export const DashboardStats = () => {
         title="Total de Alterações"
         value={stats.totalChanges}
         tooltip="Número total de alterações fiscais registradas no sistema"
-        variant="teal"
       />
       <DashboardCard
         title="Estados Afetados"
         value={stats.affectedStates}
         tooltip="Quantidade de estados com alterações fiscais ativas"
-        variant="purple"
       />
       <DashboardCard
         title="Alterações Pendentes"
         value={stats.pendingChanges}
         tooltip="Alterações que entrarão em vigor nos próximos 30 dias"
-        variant="yellow"
       />
       <DashboardCard
         title="Impacto Financeiro"
         value={`R$ ${stats.financialImpact}`}
         tooltip="Estimativa de impacto financeiro das alterações recentes"
-        variant="teal"
       />
     </div>
   );

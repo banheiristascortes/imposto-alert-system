@@ -17,16 +17,6 @@
 - Sidebar profissional
 - Sistema de notificações básico
 
-### Autenticação e Autorização
-- ✅ Proteção de rotas
-- ✅ Redirecionamento para login
-- ✅ Sistema de login/logout básico
-- ✅ Gerenciamento de sessão avançado
-  - ✅ Persistência de sessão
-  - ✅ Timeout após 6 horas
-  - ✅ Detecção de inatividade (1 hora)
-  - ✅ Atualização automática de atividade
-
 ### Dados
 - Mock data centralizado
 - Simulação de API
@@ -35,10 +25,11 @@
 
 ### Prioridade Alta
 1. **Autenticação e Autorização**
-   - [ ] Sistema de registro
+   - [ ] Sistema de login/logout
+   - [ ] Proteção de rotas
+   - [ ] Gerenciamento de sessão
+   - [ ] Página de registro
    - [ ] Recuperação de senha
-   - [ ] Refresh token
-   - [ ] Persistência de sessão
 
 2. **Perfil e Usuário**
    - [ ] Edição de perfil

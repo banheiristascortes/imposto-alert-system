@@ -1,13 +1,13 @@
 {
   "userData": {
-    "id": "1",
-    "name": "Matheus H",
-    "email": "matheush@kyros.com.br",
-    "password": "Emp@193057",
+    "id": "2",
+    "name": "Alessandra dos Reis",
+    "email": "alessandra@kyros.com.br",
+    "password": "Kyros@123",
     "role": "admin",
     "preferences": {
       "emailNotifications": true,
-      "darkMode": false
+      "darkMode": true
     },
     "avatar": "/placeholder.svg"
   },

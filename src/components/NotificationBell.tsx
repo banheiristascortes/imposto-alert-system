@@ -21,7 +21,7 @@ export const NotificationBell = () => {
     const fetchNotifications = async () => {
       try {
         const data = await api.getNotifications();
-        setNotifications(data);
+        setNotifications(data as Notification[]);
       } catch (error) {
         toast({
           title: "Erro",

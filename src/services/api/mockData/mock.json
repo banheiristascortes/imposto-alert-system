@@ -1,42 +1,16 @@
 {
   "userData": {
-    "id": "2",
-    "name": "Alessandra dos Reis",
-    "email": "alessandra@kyros.com.br",
-    "password": "Kyros@123",
+    "id": "1",
+    "name": "Matheus H",
+    "email": "matheush@kyros.com.br",
+    "password": "Emp@193057",
     "role": "admin",
     "preferences": {
       "emailNotifications": true,
-      "darkMode": true
+      "darkMode": false
     },
     "avatar": "/placeholder.svg"
   },
-  "users": [
-    {
-      "id": "1",
-      "name": "Matheus H",
-      "email": "matheush@kyros.com.br",
-      "password": "Emp@193057",
-      "role": "admin",
-      "preferences": {
-        "emailNotifications": true,
-        "darkMode": false
-      },
-      "avatar": "/placeholder.svg"
-    },
-    {
-      "id": "2",
-      "name": "Alessandra dos Reis",
-      "email": "alessandra@kyros.com.br",
-      "password": "Kyros@123",
-      "role": "admin",
-      "preferences": {
-        "emailNotifications": true,
-        "darkMode": true
-      },
-      "avatar": "/placeholder.svg"
-    }
-  ],
   "notifications": [
     {
       "id": "1",

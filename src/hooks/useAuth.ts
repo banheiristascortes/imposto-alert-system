@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { User, UserCredentials } from "@/types/user";
+import { User, UserCredentials, UserRole } from "@/types/user";
 import { useToast } from "./use-toast";
 import { api } from "@/services/api";
 
@@ -17,7 +17,7 @@ export const useAuth = () => {
           id: userData.id,
           email: userData.email,
           name: userData.name,
-          role: userData.role,
+          role: userData.role as UserRole, // Type assertion since we know the value is valid
         };
         setUser(mockUser);
         console.log("Login successful, user data:", mockUser);

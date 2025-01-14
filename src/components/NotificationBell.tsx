@@ -9,14 +9,7 @@ import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { api } from "@/services/api";
 import { useToast } from "@/hooks/use-toast";
-
-interface Notification {
-  id: number;
-  title: string;
-  description: string;
-  date: string;
-  read: boolean;
-}
+import { Notification } from "@/types/notification";
 
 export const NotificationBell = () => {
   const navigate = useNavigate();

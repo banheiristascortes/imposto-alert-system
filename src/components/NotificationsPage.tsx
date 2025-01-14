@@ -4,14 +4,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft, Bell } from "lucide-react";
 import { api } from "@/services/api";
 import { useToast } from "@/hooks/use-toast";
-
-interface Notification {
-  id: number;
-  title: string;
-  description: string;
-  date: string;
-  read: boolean;
-}
+import { Notification } from "@/types/notification";
 
 export const NotificationsPage = () => {
   const navigate = useNavigate();
@@ -38,7 +31,7 @@ export const NotificationsPage = () => {
     fetchNotifications();
   }, [toast]);
 
-  const markAsRead = (id: number) => {
+  const markAsRead = (id: string) => {
     setNotifications(
       notifications.map((n) =>
         n.id === id ? { ...n, read: true } : n

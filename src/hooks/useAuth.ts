@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { User, UserCredentials } from "@/types/user";
 import { useToast } from "./use-toast";
+import { api } from "@/services/api";
 
 export const useAuth = () => {
   const [user, setUser] = useState<User | null>(null);
@@ -8,17 +9,21 @@ export const useAuth = () => {
 
   const login = async (credentials: UserCredentials) => {
     try {
-      // This is a mock implementation - replace with actual API call
-      if (credentials.email === "matheush@kyros.com.br" && credentials.password === "Emp@193057") {
+      console.log("Attempting login with credentials:", credentials);
+      const userData = await api.getUserData();
+      
+      if (credentials.email === userData.email && credentials.password === userData.password) {
         const mockUser: User = {
-          id: "1",
-          email: credentials.email,
-          name: "Matheus",
-          role: "admin",
+          id: userData.id,
+          email: userData.email,
+          name: userData.name,
+          role: userData.role,
         };
         setUser(mockUser);
+        console.log("Login successful, user data:", mockUser);
         return true;
       }
+      console.log("Login failed: Invalid credentials");
       return false;
     } catch (error) {
       console.error("Login error:", error);

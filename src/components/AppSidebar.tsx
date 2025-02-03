@@ -23,7 +23,7 @@ export const AppSidebar = () => {
     { icon: User, label: "Perfil", path: "/profile" },
     { icon: BarChart, label: "Relatórios", path: "/reports" },
     { icon: FileText, label: "Documentação", path: "/docs" },
-    { icon: HelpCircle, label: "Ajuda", path: "/help" },
+    { icon: HelpCircle, label: "Ajuda", path: "/faq" },
     { icon: Settings, label: "Configurações", path: "/settings" },
   ];
 

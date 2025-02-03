@@ -29,9 +29,11 @@ export const LoginForm = () => {
     
     try {
       console.log("Attempting login with:", { email });
-      const userData = await api.getUserData();
+      const userData = await api.getUserByEmail(email);
       
       if (email === userData.email && password === userData.password) {
+        localStorage.setItem("currentUserEmail", email);
+        
         console.log("Login successful");
         toast({
           title: "Login realizado com sucesso!",
@@ -59,6 +61,7 @@ export const LoginForm = () => {
       setIsLoading(false);
     }
   };
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#38977f]/10 to-[#38977f]/30">
@@ -103,7 +106,7 @@ export const LoginForm = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 className="pl-10 w-full"
-                placeholder="••••••••"
+                placeholder="••••••••••"
                 required
                 disabled={isLoading}
               />

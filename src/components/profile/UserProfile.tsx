@@ -20,7 +20,17 @@ export const UserProfile = () => {
   useEffect(() => {
     const loadUserData = async () => {
       try {
-        const userData = await api.getUserData();
+        const currentUserEmail = localStorage.getItem("currentUserEmail");
+        if (!currentUserEmail) {
+          toast({
+            title: "Erro",
+            description: "Sessão expirada. Por favor, faça login novamente.",
+            variant: "destructive",
+          });
+          return;
+        }
+        
+        const userData = await api.getUserByEmail(currentUserEmail);
         setName(userData.name);
         setEmail(userData.email);
         setAvatar(userData.avatar);
@@ -37,14 +47,12 @@ export const UserProfile = () => {
 
     loadUserData();
   }, [toast]);
-
   const handleSave = () => {
     toast({
       title: "Perfil atualizado",
       description: "Suas informações foram salvas com sucesso.",
     });
   };
-
   const handleAvatarChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
@@ -55,7 +63,6 @@ export const UserProfile = () => {
       reader.readAsDataURL(file);
     }
   };
-
   return (
     <div className="container mx-auto py-8 px-4">
       <Card className="max-w-2xl mx-auto p-6">
@@ -78,7 +85,6 @@ export const UserProfile = () => {
             />
           </div>
         </div>
-
         <div className="space-y-4">
           <div>
             <label className="block text-sm font-medium mb-1">Nome</label>
@@ -92,7 +98,6 @@ export const UserProfile = () => {
               />
             </div>
           </div>
-
           <div>
             <label className="block text-sm font-medium mb-1">Email</label>
             <div className="relative">
@@ -105,7 +110,6 @@ export const UserProfile = () => {
               />
             </div>
           </div>
-
           <div>
             <h3 className="text-lg font-semibold mb-2">Preferências</h3>
             <div className="space-y-2">
@@ -135,7 +139,6 @@ export const UserProfile = () => {
               </label>
             </div>
           </div>
-
           <Button onClick={handleSave} className="w-full">
             Salvar Alterações
           </Button>

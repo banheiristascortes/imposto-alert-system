@@ -10,14 +10,14 @@ export const useAuth = () => {
   const login = async (credentials: UserCredentials) => {
     try {
       console.log("Attempting login with credentials:", credentials);
-      const userData = await api.getUserData();
+      const userData = await api.getUserByEmail(credentials.email);
       
       if (credentials.email === userData.email && credentials.password === userData.password) {
         const mockUser: User = {
           id: userData.id,
           email: userData.email,
           name: userData.name,
-          role: userData.role as UserRole, // Type assertion since we know the value is valid
+          role: userData.role as UserRole,
         };
         setUser(mockUser);
         console.log("Login successful, user data:", mockUser);

@@ -1,6 +1,5 @@
 import mockData from './api/mockData/mock.json';
 
-// Simulate API delay
 const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
 export const api = {
@@ -28,9 +27,11 @@ export const api = {
     return response.json();
   },
 
-  async getUserData() {
+  async getUserByEmail(email: string) {
     await delay(500);
-    return mockData.userData;
+    const user = mockData.users.find(u => u.email === email);
+    if (!user) throw new Error('User not found');
+    return user;
   },
 
   async getNotifications() {

@@ -16,11 +16,10 @@ export const Settings = () => {
       description: "Suas preferências foram atualizadas com sucesso.",
     });
   };
-
   return (
     <div className="container mx-auto py-8 px-4">
       <h1 className="text-2xl font-bold mb-6">Configurações</h1>
-      
+
       <div className="grid gap-6">
         <Card className="p-6">
           <h2 className="text-xl font-semibold mb-4">Aparência</h2>
@@ -47,7 +46,7 @@ export const Settings = () => {
               </div>
               <Switch id="push-notifications" defaultChecked />
             </div>
-            
+
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-2">
                 <Mail className="h-5 w-5" />
@@ -57,10 +56,11 @@ export const Settings = () => {
             </div>
           </div>
         </Card>
-
-        <Button onClick={handleSave} className="w-full sm:w-auto">
-          Salvar Alterações
-        </Button>
+        <div className="flex justify-end">
+          <Button onClick={handleSave} className="w-full sm:w-auto">
+            Salvar Alterações
+          </Button>
+        </div>
       </div>
     </div>
   );

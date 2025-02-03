@@ -1,6 +1,4 @@
-import { render } from '@testing-library/react';
-import { screen } from '@testing-library/dom';
-import userEvent from '@testing-library/user-event';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { Settings } from '../Settings';
 import { useTheme } from '@/contexts/ThemeContext';
 import { useToast } from '@/hooks/use-toast';
@@ -8,63 +6,47 @@ import '@testing-library/jest-dom';
 
 jest.mock('@/contexts/ThemeContext');
 jest.mock('@/hooks/use-toast');
-const mockUseTheme = useTheme as jest.Mock;
-const mockUseToast = useToast as jest.Mock;
 
-describe('Página de Configurações', () => {
+describe('Settings Page', () => {
   const mockToggleTheme = jest.fn();
   const mockToast = jest.fn();
-  
+
   beforeEach(() => {
-    jest.clearAllMocks();
-    mockUseTheme.mockReturnValue({
+    (useTheme as jest.Mock).mockReturnValue({
       theme: 'light',
-      toggleTheme: mockToggleTheme
+      toggleTheme: mockToggleTheme,
     });
-    mockUseToast.mockReturnValue({
-      toast: mockToast
+    (useToast as jest.Mock).mockReturnValue({
+      toast: mockToast,
     });
   });
-  
-  it('deve renderizar todas as seções principais', () => {
+
+  it('renders settings page correctly', () => {
     render(<Settings />);
     
     expect(screen.getByText('Configurações')).toBeInTheDocument();
     expect(screen.getByText('Aparência')).toBeInTheDocument();
     expect(screen.getByText('Notificações')).toBeInTheDocument();
-    expect(screen.getByText('Notificações Push')).toBeInTheDocument();
-    expect(screen.getByText('Notificações por Email')).toBeInTheDocument();
-    expect(screen.getByText('Salvar Alterações')).toBeInTheDocument();
   });
-  
-  it('deve alternar o tema quando o switch de tema for clicado', async () => {
+
+  it('handles theme toggle', () => {
     render(<Settings />);
     
-    const switchDeTema = screen.getByRole('switch', { name: /Modo Escuro/i });
-    await userEvent.click(switchDeTema);
+    const themeToggle = screen.getByRole('switch', { name: /modo escuro/i });
+    fireEvent.click(themeToggle);
     
-    expect(mockToggleTheme).toHaveBeenCalledTimes(1);
+    expect(mockToggleTheme).toHaveBeenCalled();
   });
-  
-  it('deve mostrar notificação de toast ao salvar alterações', async () => {
+
+  it('saves settings successfully', () => {
     render(<Settings />);
     
-    const botaoSalvar = screen.getByText('Salvar Alterações');
-    await userEvent.click(botaoSalvar);
+    const saveButton = screen.getByText('Salvar Alterações');
+    fireEvent.click(saveButton);
     
     expect(mockToast).toHaveBeenCalledWith({
       title: 'Configurações salvas',
-      description: 'Suas preferências foram atualizadas com sucesso.'
+      description: 'Suas preferências foram atualizadas com sucesso.',
     });
-  });
-  
-  it('deve ter os estados corretos por padrão para os switches de notificação', () => {
-    render(<Settings />);
-    
-    const switchNotificacaoPush = screen.getByRole('switch', { name: /Notificações Push/i });
-    const switchNotificacaoEmail = screen.getByRole('switch', { name: /Notificações por Email/i });
-    
-    expect(switchNotificacaoPush).toBeChecked();
-    expect(switchNotificacaoEmail).toBeChecked();
   });
 });

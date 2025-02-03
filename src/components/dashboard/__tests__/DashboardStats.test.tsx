@@ -36,7 +36,6 @@ describe('DashboardStats', () => {
     (api.getDashboardStats as jest.Mock).mockRejectedValue(new Error('API Error'));
     render(<DashboardStats />);
     
-    // Component should return null when there's an error
     await waitFor(() => {
       expect(screen.queryByText('Total de Alterações')).not.toBeInTheDocument();
     });

@@ -1,7 +1,7 @@
 import { renderHook } from '@testing-library/react';
-import { useMobile } from '../use-mobile';
+import { useIsMobile } from '../use-mobile';
 
-describe('useMobile', () => {
+describe('useIsMobile', () => {
   const originalMatchMedia = window.matchMedia;
 
   beforeAll(() => {
@@ -22,7 +22,7 @@ describe('useMobile', () => {
   });
 
   it('returns false for desktop viewport', () => {
-    const { result } = renderHook(() => useMobile());
+    const { result } = renderHook(() => useIsMobile());
     expect(result.current).toBe(false);
   });
 
@@ -38,7 +38,7 @@ describe('useMobile', () => {
       dispatchEvent: jest.fn(),
     }));
 
-    const { result } = renderHook(() => useMobile());
+    const { result } = renderHook(() => useIsMobile());
     expect(result.current).toBe(true);
   });
 });

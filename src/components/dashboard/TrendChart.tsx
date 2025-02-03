@@ -27,7 +27,6 @@ export const TrendChart = () => {
       const trendData = await api.getTrendChartData();
       setData(trendData);
     };
-
     fetchData();
   }, []);
 

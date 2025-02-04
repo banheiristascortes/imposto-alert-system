@@ -10,6 +10,7 @@ import { UserProfile } from "./components/profile/UserProfile";
 import { FAQ } from "./components/pages/FAQ";
 import { Documentation } from "./components/pages/Documentation";
 import { Settings } from "./components/pages/Settings";
+import { ReportsPage } from "./pages/ReportsPage";
 import { ROUTES } from "./constants/app";
 
 const queryClient = new QueryClient();
@@ -36,6 +37,7 @@ function App() {
                     <Route path={ROUTES.DASHBOARD} element={<DashboardPage />} />
                     <Route path={ROUTES.NOTIFICATIONS} element={<NotificationsPage />} />
                     <Route path={ROUTES.PROFILE} element={<UserProfile />} />
+                    <Route path={ROUTES.REPORTS} element={<ReportsPage />} />
                     <Route path={ROUTES.FAQ} element={<FAQ />} />
                     <Route path={ROUTES.DOCS} element={<Documentation />} />
                     <Route path={ROUTES.SETTINGS} element={<Settings />} />

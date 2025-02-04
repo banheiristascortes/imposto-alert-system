@@ -7,7 +7,6 @@ import {
   Settings,
   HelpCircle,
   FileText,
-  BarChart,
   Menu,
 } from "lucide-react";
 import { useState } from "react";
@@ -21,7 +20,6 @@ export const AppSidebar = () => {
     { icon: LayoutDashboard, label: "Dashboard", path: "/dashboard" },
     { icon: Bell, label: "Notificações", path: "/notifications" },
     { icon: User, label: "Perfil", path: "/profile" },
-    { icon: BarChart, label: "Relatórios", path: "/reports" },
     { icon: FileText, label: "Documentação", path: "/docs" },
     { icon: HelpCircle, label: "Ajuda", path: "/faq" },
     { icon: Settings, label: "Configurações", path: "/settings" },

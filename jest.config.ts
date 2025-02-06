@@ -8,7 +8,10 @@ export default {
   },
   transform: {
     '^.+\\.tsx?$': ['ts-jest', {
-      tsconfig: 'tsconfig.json'
+      tsconfig: {
+        ...require('./tsconfig.json').compilerOptions,
+        module: 'CommonJS'
+      }
     }],
   },
   testMatch: ['**/__tests__/**/*.test.(ts|tsx)'],

@@ -21,6 +21,13 @@
 - Mock data centralizado
 - Simulação de API
 
+### Testes
+- Configuração do Jest com cobertura de código
+- Testes unitários para páginas principais (Login, Dashboard, Index, Notifications)
+- Testes para hooks personalizados (useIsMobile)
+- Mock adequado para window.matchMedia
+- Configuração do TextEncoder para testes
+
 ## 🚀 Próximas Implementações
 
 ### Prioridade Alta
@@ -86,6 +93,7 @@
 
 #### `/` (LoginPage)
 - ✅ Estrutura básica
+- ✅ Testes implementados
 - ❌ Validação de formulário
 - ❌ Integração com auth
 - ❌ Recuperação de senha
@@ -95,11 +103,13 @@
 - ✅ Mapa interativo
 - ✅ Timeline
 - ✅ Comentários
+- ✅ Testes básicos implementados
 - ❌ Filtros avançados
 - ❌ Preferências salvas
 
 #### `/notifications` (NotificationsPage)
 - ✅ Listagem básica
+- ✅ Testes básicos implementados
 - ❌ Filtros
 - ❌ Gestão de status
 - ❌ Agrupamento
@@ -112,12 +122,14 @@
 
 #### `/faq` (FAQ)
 - ✅ Listagem básica
+- ✅ Testes implementados
 - ❌ Categorização
 - ❌ Busca
 - ❌ Sistema de feedback
 
 #### `/docs` (Documentation)
 - ✅ Estrutura básica
+- ✅ Testes implementados
 - ❌ Navegação por tópicos
 - ❌ Exemplos interativos
 - ❌ Busca
@@ -145,13 +157,15 @@
 - Administração: 0%
 - Performance: 40%
 - Segurança: 20%
+- Testes: 35%
 
 ## 🔄 Próximos Passos Recomendados
 
-1. Implementar autenticação com Supabase
-2. Completar funcionalidades do perfil de usuário
-3. Melhorar sistema de notificações
-4. Desenvolver páginas de relatórios
-5. Implementar configurações avançadas
-6. Melhorar documentação
-7. Criar área administrativa
+1. Aumentar cobertura de testes para atingir 90%
+2. Implementar autenticação com Supabase
+3. Completar funcionalidades do perfil de usuário
+4. Melhorar sistema de notificações
+5. Desenvolver páginas de relatórios
+6. Implementar configurações avançadas
+7. Melhorar documentação
+8. Criar área administrativa

@@ -2,7 +2,6 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import { useTheme, ThemeProvider } from "../ThemeContext";
 import { act } from "react-dom/test-utils";
 
-// Test component that uses the theme context
 const TestComponent = () => {
   const { theme, toggleTheme } = useTheme();
   return (
@@ -17,10 +16,8 @@ const TestComponent = () => {
 
 describe("ThemeContext", () => {
   beforeEach(() => {
-    // Clear localStorage before each test
     localStorage.clear();
     
-    // Reset document root classes
     document.documentElement.classList.remove("light", "dark");
   });
 
@@ -44,11 +41,9 @@ describe("ThemeContext", () => {
 
     const toggleButton = screen.getByTestId("theme-toggle");
 
-    // Initial state should be light
     expect(screen.getByTestId("theme-value")).toHaveTextContent("light");
     expect(document.documentElement.classList.contains("light")).toBeTruthy();
 
-    // Toggle to dark
     act(() => {
       fireEvent.click(toggleButton);
     });
@@ -58,7 +53,6 @@ describe("ThemeContext", () => {
     expect(document.documentElement.classList.contains("light")).toBeFalsy();
     expect(localStorage.getItem("theme")).toBe("dark");
 
-    // Toggle back to light
     act(() => {
       fireEvent.click(toggleButton);
     });
@@ -83,7 +77,6 @@ describe("ThemeContext", () => {
   });
 
   it("throws error when useTheme is used outside of ThemeProvider", () => {
-    // Suppress console.error for this test as we expect an error
     const consoleSpy = jest.spyOn(console, "error");
     consoleSpy.mockImplementation(() => {});
 

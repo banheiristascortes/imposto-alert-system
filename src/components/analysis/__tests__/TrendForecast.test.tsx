@@ -40,6 +40,7 @@ describe('TrendForecast', () => {
     (api.getTrendData as jest.Mock).mockResolvedValue([]);
     render(<TrendForecast />);
     
+    await screen.findByText('Nenhum dado disponível');
     expect(screen.queryByTestId('area-chart')).not.toBeInTheDocument();
   });
 });

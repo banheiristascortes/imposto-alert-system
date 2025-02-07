@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { CommentSection } from '../CommentSection';
 import { api } from '@/services/api';
 import { useToast } from '@/hooks/use-toast';
@@ -25,7 +25,9 @@ describe('CommentSection', () => {
 
   beforeEach(() => {
     (api.getComments as jest.Mock).mockResolvedValue(mockComments);
+    (api.addComment as jest.Mock).mockResolvedValue({});
     (useToast as jest.Mock).mockReturnValue({ toast: mockToast });
+    mockToast.mockClear();
   });
 
   it('renders comments correctly', async () => {
@@ -44,18 +46,23 @@ describe('CommentSection', () => {
     fireEvent.change(input, { target: { value: 'New comment' } });
     fireEvent.click(submitButton);
 
-    expect(mockToast).toHaveBeenCalledWith(expect.objectContaining({
-      title: 'Comentário adicionado',
-    }));
+    await waitFor(() => {
+      expect(mockToast).toHaveBeenCalledWith(expect.objectContaining({
+        title: 'Comentário adicionado',
+      }));
+    });
   });
 
   it('handles API error gracefully', async () => {
     (api.getComments as jest.Mock).mockRejectedValue(new Error('API Error'));
+    
     render(<CommentSection />);
 
-    expect(mockToast).toHaveBeenCalledWith(expect.objectContaining({
-      title: 'Erro',
-      variant: 'destructive',
-    }));
+    await waitFor(() => {
+      expect(mockToast).toHaveBeenCalledWith(expect.objectContaining({
+        title: 'Erro',
+        variant: 'destructive',
+      }));
+    });
   });
 });

@@ -38,23 +38,32 @@ export const CommentSection = () => {
     fetchComments();
   }, [toast]);
 
-  const handleAddComment = () => {
+  const handleAddComment = async () => {
     if (!newComment.trim()) return;
 
-    const comment: Comment = {
-      id: comments.length + 1,
-      user: "Usuário Atual",
-      text: newComment,
-      date: new Date().toISOString().split("T")[0],
-    };
+    try {
+      const comment: Comment = {
+        id: comments.length + 1,
+        user: "Usuário Atual",
+        text: newComment,
+        date: new Date().toISOString().split("T")[0],
+      };
 
-    setComments([comment, ...comments]);
-    setNewComment("");
-    
-    toast({
-      title: "Comentário adicionado",
-      description: "Seu comentário foi publicado com sucesso.",
-    });
+      await api.addComment(comment);
+      setComments([comment, ...comments]);
+      setNewComment("");
+      
+      toast({
+        title: "Comentário adicionado",
+        description: "Seu comentário foi publicado com sucesso.",
+      });
+    } catch (error) {
+      toast({
+        title: "Erro",
+        description: "Não foi possível adicionar o comentário",
+        variant: "destructive",
+      });
+    }
   };
 
   return (

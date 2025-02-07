@@ -50,7 +50,7 @@ describe('ComparativeAnalysis', () => {
     render(<ComparativeAnalysis />);
     
     await waitFor(() => {
-      expect(screen.getByText('Análise Comparativa entre Estados')).toBeInTheDocument();
+      expect(screen.getByText('Erro ao carregar dados comparativos')).toBeInTheDocument();
     });
   });
 });

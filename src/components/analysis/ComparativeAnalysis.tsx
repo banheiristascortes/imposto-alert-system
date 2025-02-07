@@ -18,11 +18,18 @@ import { api } from "@/services/api";
 export const ComparativeAnalysis = () => {
   const { toast } = useToast();
   const [data, setData] = useState([]);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
-      const comparativeData = await api.getComparativeData();
-      setData(comparativeData);
+      try {
+        const comparativeData = await api.getComparativeData();
+        setData(comparativeData);
+        setError(null);
+      } catch (err) {
+        setError("Erro ao carregar dados comparativos");
+        console.error("Error fetching comparative data:", err);
+      }
     };
 
     fetchData();
@@ -45,46 +52,52 @@ export const ComparativeAnalysis = () => {
         </Button>
       </div>
       <div className="h-[400px]">
-        <ResponsiveContainer width="100%" height="100%">
-          <LineChart data={data}>
-            <CartesianGrid strokeDasharray="3 3" className="opacity-50" />
-            <XAxis dataKey="mes" />
-            <YAxis />
-            <Tooltip
-              contentStyle={{
-                background: "white",
-                border: "1px solid #e2e8f0",
-                borderRadius: "8px",
-                padding: "8px",
-              }}
-            />
-            <Legend />
-            <Line
-              type="monotone"
-              dataKey="SP"
-              stroke="#1E3A8A"
-              strokeWidth={2}
-              dot={{ r: 4 }}
-              activeDot={{ r: 6 }}
-            />
-            <Line
-              type="monotone"
-              dataKey="RJ"
-              stroke="#2563EB"
-              strokeWidth={2}
-              dot={{ r: 4 }}
-              activeDot={{ r: 6 }}
-            />
-            <Line
-              type="monotone"
-              dataKey="MG"
-              stroke="#60A5FA"
-              strokeWidth={2}
-              dot={{ r: 4 }}
-              activeDot={{ r: 6 }}
-            />
-          </LineChart>
-        </ResponsiveContainer>
+        {error ? (
+          <div className="flex items-center justify-center h-full text-gray-500">
+            {error}
+          </div>
+        ) : (
+          <ResponsiveContainer width="100%" height="100%">
+            <LineChart data={data}>
+              <CartesianGrid strokeDasharray="3 3" className="opacity-50" />
+              <XAxis dataKey="mes" />
+              <YAxis />
+              <Tooltip
+                contentStyle={{
+                  background: "white",
+                  border: "1px solid #e2e8f0",
+                  borderRadius: "8px",
+                  padding: "8px",
+                }}
+              />
+              <Legend />
+              <Line
+                type="monotone"
+                dataKey="SP"
+                stroke="#1E3A8A"
+                strokeWidth={2}
+                dot={{ r: 4 }}
+                activeDot={{ r: 6 }}
+              />
+              <Line
+                type="monotone"
+                dataKey="RJ"
+                stroke="#2563EB"
+                strokeWidth={2}
+                dot={{ r: 4 }}
+                activeDot={{ r: 6 }}
+              />
+              <Line
+                type="monotone"
+                dataKey="MG"
+                stroke="#60A5FA"
+                strokeWidth={2}
+                dot={{ r: 4 }}
+                activeDot={{ r: 6 }}
+              />
+            </LineChart>
+          </ResponsiveContainer>
+        )}
       </div>
     </Card>
   );

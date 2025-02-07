@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import { ComparativeAnalysis } from '../ComparativeAnalysis';
 import { api } from '@/services/api';
 import '@testing-library/jest-dom';
@@ -28,24 +28,29 @@ describe('ComparativeAnalysis', () => {
   ];
 
   beforeEach(() => {
-    (api.getComparativeData as jest.Mock).mockResolvedValue(mockData);
+    (api.getComparativeData as jest.Mock).mockReset();
   });
 
   it('renders comparative analysis chart', async () => {
+    (api.getComparativeData as jest.Mock).mockResolvedValue(mockData);
     render(<ComparativeAnalysis />);
     
     expect(screen.getByText('Análise Comparativa entre Estados')).toBeInTheDocument();
-    expect(await screen.findByTestId('responsive-container')).toBeInTheDocument();
-    expect(await screen.findByTestId('line-chart')).toBeInTheDocument();
-    expect(await screen.findByTestId('line-SP')).toBeInTheDocument();
-    expect(await screen.findByTestId('line-RJ')).toBeInTheDocument();
-    expect(await screen.findByTestId('line-MG')).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByTestId('responsive-container')).toBeInTheDocument();
+      expect(screen.getByTestId('line-chart')).toBeInTheDocument();
+      expect(screen.getByTestId('line-SP')).toBeInTheDocument();
+      expect(screen.getByTestId('line-RJ')).toBeInTheDocument();
+      expect(screen.getByTestId('line-MG')).toBeInTheDocument();
+    });
   });
 
   it('handles API error gracefully', async () => {
     (api.getComparativeData as jest.Mock).mockRejectedValue(new Error('API Error'));
     render(<ComparativeAnalysis />);
     
-    expect(screen.getByText('Análise Comparativa entre Estados')).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByText('Análise Comparativa entre Estados')).toBeInTheDocument();
+    });
   });
 });
